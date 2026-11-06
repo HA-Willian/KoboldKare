@@ -10,9 +10,16 @@ using NetStack.Quantization;
 using NetStack.Serialization;
 using SimpleJSON;
 using UnityEngine.Serialization;
+using Unity.Profiling;
 using Random = UnityEngine.Random;
 
 public class Kobold : GeneHolder, IGrabbable, IPunObservable, IPunInstantiateMagicCallback, ISavable, IValuedGood {
+    private static readonly ProfilerMarker metabolismMarker = new ProfilerMarker("Kobold.MetabolismTick");
+    private static readonly ProfilerMarker consumptionMarker = new ProfilerMarker("Kobold.ProcessReagents");
+    private static readonly ProfilerMarker returnMixMarker = new ProfilerMarker("Kobold.ReturnReagents");
+    private static readonly ProfilerMarker genesMarker = new ProfilerMarker("Kobold.ApplyGenes");
+    private readonly ReagentContents metabolismBuffer = new ReagentContents();
+    private bool metabolismInProgress;
     [System.Serializable]
     public class PenetrableSet {
         public Penetrable penetratable;
@@ -320,6 +327,7 @@ public class Kobold : GeneHolder, IGrabbable, IPunObservable, IPunInstantiateMag
     }
 
     public override void SetGenes(KoboldGenes newGenes) {
+        using var sample = genesMarker.Auto();
         if (newGenes == null) {
             return;
         }
@@ -561,8 +569,10 @@ public class Kobold : GeneHolder, IGrabbable, IPunObservable, IPunInstantiateMag
     }
 
     public void ProcessReagents(ReagentContents contents) {
+        using var sample = consumptionMarker.Auto();
         addbackReagents.Clear();
         KoboldGenes genes = GetGenes();
+        var previousGenes = new KoboldGenes.Snapshot(genes);
         float newEnergy = energy;
         float passiveEnergyGeneration = 0.025f;
         if (newEnergy < 1f) {
@@ -571,7 +581,7 @@ public class Kobold : GeneHolder, IGrabbable, IPunObservable, IPunInstantiateMag
             }
             newEnergy = Mathf.MoveTowards(newEnergy, 1.1f, passiveEnergyGeneration);
         }
-        foreach (var pair in contents) {
+        foreach (var pair in contents.Values) {
             if (ReagentDatabase.TryGetAsset(pair.id, out var reagent)) {
                 float processedAmount = pair.volume;
                 reagent.GetConsumptionEvent().OnConsume(this, reagent, ref processedAmount, ref consumedReagents,
@@ -579,13 +589,26 @@ public class Kobold : GeneHolder, IGrabbable, IPunObservable, IPunInstantiateMag
                 pair.volume -= processedAmount;
             }
         }
-        bellyContainer.AddMix(contents, GenericReagentContainer.InjectType.Inject); 
-        bellyContainer.AddMix(addbackReagents, GenericReagentContainer.InjectType.Inject);
+        using (returnMixMarker.Auto()) {
+            // Retain zero-volume entries and both notifications: mods and reactions
+            // can observe them. Only temporary mixture construction is optimized.
+            bellyContainer.AddMix(contents, GenericReagentContainer.InjectType.Inject);
+            bellyContainer.AddMix(addbackReagents, GenericReagentContainer.InjectType.Inject);
+        }
         float overflowEnergy = Mathf.Max(newEnergy - GetMaxEnergy(), 0f);
         if (overflowEnergy != 0f) {
             genes = genes.With(fatSize: genes.fatSize + overflowEnergy);
         }
-        SetGenes(genes);
+        if (genes != null && previousGenes.Matches(genes) && previousGenes.Matches(GetGenes())) {
+            // Keep identity, energy and genesChanged notifications, without restarting
+            // inflators or rewriting every renderer's materials for unchanged values.
+            bellyContainer.maxVolume = genes.bellySize;
+            metabolizedContents.SetMaxVolume(genes.metabolizeCapacitySize);
+            energyChanged?.Invoke(energy, genes.maxEnergy);
+            base.SetGenes(genes);
+        } else {
+            SetGenes(genes);
+        }
         
         if (Math.Abs(energy - newEnergy) > 0.001f) {
             energy = Mathf.Clamp(newEnergy, 0f, GetMaxEnergy());
@@ -597,9 +620,22 @@ public class Kobold : GeneHolder, IGrabbable, IPunObservable, IPunInstantiateMag
         if (!photonView.IsMine) {
             return;
         }
-        stimulation = Mathf.MoveTowards(stimulation, 0f, f*0.08f);
-        ReagentContents vol = bellyContainer.Metabolize(f);
-        ProcessReagents(vol);
+        using (metabolismMarker.Auto()) {
+            stimulation = Mathf.MoveTowards(stimulation, 0f, f*0.08f);
+            // A callback may re-enter metabolism. Never clear an output that the
+            // enclosing invocation is still consuming.
+            if (metabolismInProgress) {
+                ProcessReagents(bellyContainer.Metabolize(f));
+                return;
+            }
+            metabolismInProgress = true;
+            try {
+                bellyContainer.MetabolizeInto(f, metabolismBuffer);
+                ProcessReagents(metabolismBuffer);
+            } finally {
+                metabolismInProgress = false;
+            }
+        }
     }
 
     IEnumerator WaitAndThenStopGargling(float time) {

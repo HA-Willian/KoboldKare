@@ -9,7 +9,9 @@ public class Explosion : MonoBehaviourPun {
     [SerializeField]
     private Material scorchDecal;
     void Start() {
+#if KOBOLDKARE_RUNTIME_PAINTING
         SkinnedMeshDecals.PaintDecal.RenderDecalInBox(Vector3.one*4f, transform.position, scorchDecal, Quaternion.FromToRotation(Vector3.forward, Vector3.down), GameManager.instance.decalHitMask);
+#endif
         if (!photonView.IsMine) {
             return;
         }
@@ -18,7 +20,9 @@ public class Explosion : MonoBehaviourPun {
         SoilTile bestTile = null;
         float bestTileDistance = float.MaxValue;
         foreach( Collider c in Physics.OverlapSphere(transform.position, 5f, playerMask, QueryTriggerInteraction.Ignore)) {
+#if KOBOLDKARE_RUNTIME_PAINTING
             scorchDecal.color = Color.black;
+#endif
             Kobold k = c.GetComponentInParent<Kobold>();
             if (k != null && !kobolds.Contains(k)) {
                 kobolds.Add(k);

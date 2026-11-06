@@ -180,6 +180,7 @@ public class InflatorPump : UsableMachine, IAnimationStationSet {
                             }
                         }
                         
+#if KOBOLDKARE_RUNTIME_PAINTING
                         if (alloc.volume > 0f) {
                             cumSplatProjectorMaterial.color = color;
                         }
@@ -189,6 +190,7 @@ public class InflatorPump : UsableMachine, IAnimationStationSet {
                             Quaternion.LookRotation(hit.normal, Vector3.up) *
                             Quaternion.AngleAxis(UnityEngine.Random.Range(-180f, 180f), Vector3.forward),
                             Vector2.one * (volume), length);
+#endif
                     };
                     mozzarella.SetFollowPenetrator(pumper);
                 }

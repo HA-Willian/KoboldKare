@@ -16,6 +16,9 @@ public class ScriptableReagentReaction : ScriptableObject {
     }
     public Reactant[] reactants;
     public Reactant[] products;
+    private void OnValidate() {
+        ReactionsDatabase.InvalidateReactionCache();
+    }
     public void DoReaction(GenericReagentContainer container) {
         Reactant minReactant = reactants[0];
         float minReactantVolumeRatio = container.GetVolumeOf(minReactant.reactant)/Mathf.Max(minReactant.coefficient,0.001f);

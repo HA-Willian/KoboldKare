@@ -10,6 +10,7 @@ public class DecalBleeder : MonoBehaviour
     private Vector3 _lastPos = Vector3.zero;
     //private float _minDistance = 0.1f;
     private void OnCollisionEnter(Collision collision) {
+#if KOBOLDKARE_RUNTIME_PAINTING
         if ( (1<<collision.collider.gameObject.layer & _hitLayers) == 0 ) {
             return;
         }
@@ -28,5 +29,6 @@ public class DecalBleeder : MonoBehaviour
             //GameObject.Instantiate(_decals[Random.Range(0, _decals.Count - 1)], point, Quaternion.LookRotation(normal));
             //_lastPos = point;
         //}
+#endif
     }
 }

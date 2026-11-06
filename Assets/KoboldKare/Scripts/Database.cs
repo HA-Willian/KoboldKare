@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class Database<T> : MonoBehaviour where T : UnityEngine.Object {
     protected static Database<T> instance;
+    private static int revision;
+    public static int Revision => revision;
 
     public struct ObjectStubPair {
         public T obj;
@@ -69,6 +71,7 @@ public class Database<T> : MonoBehaviour where T : UnityEngine.Object {
             Destroy(gameObject);
         } else {
             instance = this;
+            revision++;
         }
     }
     public static bool TryGetAsset(string name, out T match) {
@@ -116,6 +119,7 @@ public class Database<T> : MonoBehaviour where T : UnityEngine.Object {
                 stub = stub
             });
             list.Sort(CompareObjectStubPair);
+            revision++;
         }
     }
     
@@ -134,6 +138,7 @@ public class Database<T> : MonoBehaviour where T : UnityEngine.Object {
                 i--;
             }
         }
+        revision++;
         
         if (list.Count == 0) {
             instance.assets.RemoveAll(pair => pair.key == key);

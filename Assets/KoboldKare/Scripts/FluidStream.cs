@@ -222,12 +222,14 @@ public class FluidStream : CatmullDeformer, IPunObservable, ISavable {
             return;
         }
 
+#if KOBOLDKARE_RUNTIME_PAINTING
         Color color = midairContents.GetColor();
         decalProjector.SetColor(ColorID, color.With(a:5f/255f));
         decalProjectorSubtractive.SetColor(ColorID, color.With(a:5f/255f));
         SkinnedMeshDecals.PaintDecal.RenderDecalInSphere(hit.point, 0.5f, midairContents.IsCleaningAgent() ? decalProjectorSubtractive : decalProjector,
             Quaternion.identity,
             GameManager.instance.decalHitMask);
+#endif
 
         if (photonView.IsMine) {
             float perVolume = (midairContents.volume * percentageLoss) + 1f;

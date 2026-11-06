@@ -89,12 +89,14 @@ public class Projectile : GeneHolder, IPunObservable, ISavable, IPunInstantiateM
     }
 
     private void OnSplash() {
+#if KOBOLDKARE_RUNTIME_PAINTING
         Color color = contents.GetColor();
         decalProjector.SetColor(ColorID, color);
         decalProjectorSubtractive.SetColor(ColorID, color);
         SkinnedMeshDecals.PaintDecal.RenderDecalInSphere(transform.position, 1f, contents.IsCleaningAgent() ? decalProjectorSubtractive : decalProjector,
             Quaternion.identity,
             GameManager.instance.decalHitMask);
+#endif
 
         splash.SetActive(true);
         projectile.SetActive(false);

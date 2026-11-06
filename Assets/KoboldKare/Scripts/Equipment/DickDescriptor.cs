@@ -218,6 +218,7 @@ public class DickDescriptor : MonoBehaviour {
                             }
                         }
 
+#if KOBOLDKARE_RUNTIME_PAINTING
                         //Debug.DrawLine(hit.point, hit.point + hit.normal, Color.red, 5f);
                         if (alloc.volume > 0f) {
                             set.cumSplatProjectorMaterial.color = color;
@@ -225,16 +226,19 @@ public class DickDescriptor : MonoBehaviour {
                         PaintDecal.RenderDecalForCollider(hit.collider, set.cumSplatProjectorMaterial,
                             hit.point - hit.normal * 0.1f, Quaternion.LookRotation(hit.normal, Vector3.up)*Quaternion.AngleAxis(UnityEngine.Random.Range(-180f,180f), Vector3.forward),
                             Vector2.one * (volume * 4f), length);
+#endif
                     };
                     mozzarella.SetFollowPenetrator(set.dick);
                 }
                 continue;
             }
+#if KOBOLDKARE_RUNTIME_PAINTING
             Vector3 holePos = pennedHole.GetPath().GetPositionFromT(0f);
             Vector3 holeTangent = pennedHole.GetPath().GetVelocityFromT(0f);
             PaintDecal.RenderDecalInSphere(holePos, set.dick.transform.lossyScale.x * 0.25f,
                 set.cumSplatProjectorMaterial, Quaternion.LookRotation(holeTangent, Vector3.up),
                 GameManager.instance.decalHitMask);
+#endif
             GenericReagentContainer container = pennedHole.GetComponentInParent<GenericReagentContainer>();
             if (attachedKobold.photonView.IsMine) {
                 ReagentContents alloc = new ReagentContents();

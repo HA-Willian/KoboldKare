@@ -5,6 +5,7 @@ using NetStack.Quantization;
 using NetStack.Serialization;
 using SimpleJSON;
 using UnityEngine;
+using Unity.Profiling;
 
 [Serializable]
 public class Reagent {
@@ -37,6 +38,8 @@ public static class ReagentContentsBitBufferExtension {
 }
 
 public class ReagentContents : IEnumerable<Reagent> {
+    private static readonly ProfilerMarker metabolizeMarker = new ProfilerMarker("Reagents.Metabolize");
+    private static readonly ProfilerMarker volumeMarker = new ProfilerMarker("Reagents.TotalVolume");
     public delegate void ReagentContentsChangedAction(ReagentContents contents);
 
     public ReagentContentsChangedAction changed;
@@ -68,6 +71,7 @@ public class ReagentContents : IEnumerable<Reagent> {
     private const float metabolizationVolumeEpsilon = 0.4f;
     public float volume {
         get {
+            using var sample = volumeMarker.Auto();
             float v = 0f;
             foreach(var pair in contents) {
                 v += pair.Value.volume;
@@ -78,6 +82,10 @@ public class ReagentContents : IEnumerable<Reagent> {
     public int Count => contents.Count;
     [SerializeField]
     private Dictionary<byte,Reagent> contents = new Dictionary<byte,Reagent>();
+    // Used only by the character-owned metabolism output. Keep inactive entries out of
+    // contents, but retain their objects so clearing/changing a stomach does not churn GC.
+    private Dictionary<byte, Reagent> metabolizeEntryCache;
+    internal Dictionary<byte, Reagent>.ValueCollection Values => contents.Values;
     public void OverrideReagent(byte id, float volume) {
         if (contents.ContainsKey(id)) {
             contents[id].volume = volume;
@@ -132,10 +140,30 @@ public class ReagentContents : IEnumerable<Reagent> {
     }
 
     public ReagentContents Metabolize(float deltaTime) {
+        ReagentContents result = new ReagentContents();
+        MetabolizeInto(deltaTime, result, false);
+        return result;
+    }
+
+    // The destination is borrowed until the next call; it must not be retained by a
+    // consumer or be the source. The public allocating API keeps its original ownership.
+    internal void MetabolizeInto(float deltaTime, ReagentContents destination) {
+        MetabolizeInto(deltaTime, destination, true);
+    }
+
+    private void MetabolizeInto(float deltaTime, ReagentContents destination, bool reuseEntries) {
+        if (ReferenceEquals(this, destination)) {
+            throw new ArgumentException("Metabolism output must be separate from its source.", nameof(destination));
+        }
+        using var sample = metabolizeMarker.Auto();
+        destination.contents.Clear();
+        destination.maxVolume = float.MaxValue;
+        if (reuseEntries) {
+            destination.metabolizeEntryCache ??= new Dictionary<byte, Reagent>();
+        }
         float v = volume;
-        ReagentContents metabolizeContents = new ReagentContents();
         if (v <= 0f) {
-            return metabolizeContents;
+            return;
         }
         foreach(var pair in contents) {
             float metabolizationHalfLife = 0f;
@@ -156,10 +184,17 @@ public class ReagentContents : IEnumerable<Reagent> {
             }
 
             contents[pair.Key].volume = newVolume;
-            metabolizeContents.AddMix(pair.Key, curVolume - newVolume);
+            Reagent metabolized;
+            if (!reuseEntries || !destination.metabolizeEntryCache.TryGetValue(pair.Key, out metabolized)) {
+                metabolized = new Reagent { id = pair.Key };
+                if (reuseEntries) {
+                    destination.metabolizeEntryCache.Add(pair.Key, metabolized);
+                }
+            }
+            metabolized.volume = curVolume - newVolume;
+            destination.contents.Add(pair.Key, metabolized);
         }
         changed?.Invoke(this);
-        return metabolizeContents;
     }
 
 

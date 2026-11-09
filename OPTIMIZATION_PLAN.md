@@ -97,3 +97,70 @@ Validação realizada: análise sintática Roslyn dos nove arquivos alterados no
 - Comparar um bake de teste com Smallest Occluder menor somente após inspecionar paredes e escala. Verificar custo de bake/memória e resultado nos dois pontos; não editar apenas o número serializado e esperar que o PVS já gravado mude.
 
 Referências oficiais: [janela de Occlusion Culling, Unity 2021.3](https://docs.unity.cn/2021.3/Documentation/Manual/occlusion-culling-window.html), [fluxo de profiling](https://unity.com/how-to/best-practices-for-profiling-game-performance) e [alocações e ferramentas de memória](https://unity.com/how-to/use-memory-profiling-unity).
+
+
+# PARTE 2:
+
+O plano começa pela medição reproduzível, segue para a identificação da causa e só então aplica correções. As hipóteses do primeiro prompt serão investigadas, sem assumir previamente que o bake está inválido.
+
+Preparar a referência A/B
+
+Usar Vanilla, mods desativados e Development Build, mantendo resolução e qualidade constantes.
+Fixar as poses A e B exatamente como informadas, impedindo o OrbitCamera de sobrescrevê-las durante a captura.
+Desativar VSync e limite de FPS durante as medições; restaurar as configurações ao terminar.
+Registrar Batches, SetPass, Draw Calls, Shadow Casters e tempos de CPU/render thread/GPU disponíveis, após estabilização.
+Preservar as alterações existentes na cena e no bake.
+Criar o diff de visibilidade
+
+Exportar identificação do Renderer, caminho na hierarquia, cena, mesh, materiais compartilhados, shader, keywords, lightmap index, estado de static batching e presença de MaterialPropertyBlock.
+Capturar A − B e B − A, agrupando também por nome, material e shader.
+Incluir objetos carregados em runtime, atualizando o inventário entre capturas.
+Limite da instrumentação: Renderer.isVisible e OnWillRenderObject não comprovam, sozinhos, quais draws pertencem ao passe da câmera ou às sombras. O relatório deve distinguir observações de visibilidade de draws confirmados no Frame Debugger, sem apresentar candidatos como objetos efetivamente desenhados.
+Entrega: lista verificável dos objetos adicionais em B e dos passes responsáveis.
+
+Localizar a transição entre A e B
+
+Interpolar posição e rotação em pelo menos 17 amostras, incluindo os extremos.
+Medir vários frames por amostra e repetir o percurso no sentido inverso.
+Refinar o intervalo com maior salto por bisseção.
+Repetir separadamente com posição variável e rotação fixa, depois posição fixa e rotação variável.
+Entrega: curva de Batches/SetPass e intervalo da transição. Um degrau será evidência a investigar; não será tratado automaticamente como prova de troca de célula.
+
+Executar a matriz de isolamento
+
+Configuração	Pose A	Pose B
+Oclusão e sombras originais	Medir	Medir
+Oclusão desligada	Medir	Medir
+Sombras desligadas no URP	Medir	Medir
+Oclusão e sombras desligadas	Medir	Medir
+A diferença entre as linhas quantificará a contribuição de cada mecanismo e sua interação. As imagens fornecidas tornam o passe MainLightShadow uma prioridade de investigação.
+
+Auditar FarmRegion e o bake
+
+Comparar posição, rotação e escala da região e dos seus ancestrais entre cena salva e runtime.
+Rastrear instanciação, carregamento de cenas e alterações de transform.
+Conferir flags Occluder/Occludee dos Renderers efetivos, especialmente da casa.
+Inspecionar bounds, espessura, aberturas e orientação das faces de stone.
+Conferir os dados de oclusão associados à cena e os parâmetros usados no bake.
+Ser prefab ou carregar uma cena aditivamente, isoladamente, não demonstra que o bake deixou de funcionar. Precisamos identificar uma incompatibilidade concreta.
+
+Aplicar correções conforme os resultados
+
+Bake/geometria: corrigir flags ou geometria; dividir a mesh quando necessário; ajustar os parâmetros com base nas dimensões reais e rebakear.
+Região movida ou conteúdo dinâmico: implementar culling por zonas/portais com registro de Renderers dinâmicos e comportamento conservador para objetos sem zona. Validar portas, janelas, sombras e câmeras secundárias.
+Sombras: experimentar redução de distância e cascatas, depois exclusão seletiva de pequenos casters comprovadamente dispensáveis.
+Rocks: inventariar materiais/keywords/MPBs e diferenças de lightmap; eliminar instâncias desnecessárias de materiais; verificar compatibilidade do shader com SRP Batcher. Avaliar instancing apenas quando os dados justificarem.
+Cada intervenção terá uma hipótese explícita e comparação com a referência.
+
+Validar cada tentativa
+
+Repetir A, B, o percurso interpolado e mais 3 a 5 poses.
+Comparar contadores e frame time sem cap.
+Verificar visualmente desaparecimentos, popping e perda de sombras relevantes.
+Manter somente alterações com benefício medido e qualidade aceitável.
+Encerrar pelo critério definido
+
+Buscar B próximo de 319 Batches / 99 SetPass, com variação menor entre poses e benefício no tempo de frame.
+Contar como tentativa uma intervenção corretiva seguida de validação, não uma captura diagnóstica.
+Limitar a cinco tentativas. Se a quinta não alcançar o critério, interromper novas correções e entregar os resultados, as melhorias comprovadas e as limitações restantes.
+O resultado final incluirá a ferramenta de captura, os relatórios comparativos e as correções sustentadas pelas medições, sem migração para DOTS/ECS.

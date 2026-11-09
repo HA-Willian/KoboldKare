@@ -1,0 +1,994 @@
+{
+  "scene": "Assets/KoboldKare/Scenes/MainMap.unity",
+  "sceneSha256": "23678f3f58c349d812a6475463b2056952093ea0d43ddf556582953fb0a874f0",
+  "occlusionGuid": "77db4406790739c40b07679444943e0f",
+  "occlusionPath": "Assets/KoboldKare/Scenes/MainMap/OcclusionCullingData.asset",
+  "occlusionSha256": "0821878f3997246037e127ab2a961fc09b9a81701eb9d1c65f411f41eaa60319",
+  "bakeSettings": "m_OcclusionBakeSettings:\n    smallestOccluder: 5\n    smallestHole: 0.25\n    backfaceThreshold: 100\n  m_SceneGUID:",
+  "dirtyInEditor": false,
+  "transforms": [
+    {
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]",
+      "id": 1834116,
+      "localPosition": {
+        "x": -167.0,
+        "y": 16.78000259399414,
+        "z": 288.1000061035156
+      },
+      "localScale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "position": {
+        "x": -167.0,
+        "y": 16.78000259399414,
+        "z": 288.1000061035156
+      },
+      "lossyScale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "localRotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]",
+      "id": 1840436,
+      "localPosition": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "localScale": {
+        "x": 0.7000001072883606,
+        "y": 0.699999988079071,
+        "z": 0.7000001668930054
+      },
+      "position": {
+        "x": -168.0978240966797,
+        "y": 17.820003509521484,
+        "z": 317.36749267578125
+      },
+      "lossyScale": {
+        "x": 0.7000002264976501,
+        "y": 0.699999988079071,
+        "z": 0.7000002264976501
+      },
+      "localRotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      },
+      "rotation": {
+        "x": 1.4787879365485423e-08,
+        "y": 0.6345433592796326,
+        "z": 6.497853632936312e-08,
+        "w": 0.7728872895240784
+      }
+    },
+    {
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]/Structure[0]",
+      "id": 1846618,
+      "localPosition": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "localScale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "position": {
+        "x": -168.0978240966797,
+        "y": 17.820003509521484,
+        "z": 317.36749267578125
+      },
+      "lossyScale": {
+        "x": 1.0000001192092896,
+        "y": 1.0,
+        "z": 1.0000001192092896
+      },
+      "localRotation": {
+        "x": 1.4787879365485423e-08,
+        "y": 0.6345433592796326,
+        "z": 6.497853632936312e-08,
+        "w": 0.7728872895240784
+      },
+      "rotation": {
+        "x": 1.4787879365485423e-08,
+        "y": 0.6345433592796326,
+        "z": 6.497853632936312e-08,
+        "w": 0.7728872895240784
+      }
+    },
+    {
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]",
+      "id": 1828742,
+      "localPosition": {
+        "x": -1.0978240966796875,
+        "y": 1.0400009155273438,
+        "z": 29.267486572265625
+      },
+      "localScale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "position": {
+        "x": -168.0978240966797,
+        "y": 17.820003509521484,
+        "z": 317.36749267578125
+      },
+      "lossyScale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "localRotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    {
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Stone[5]",
+      "id": 1860192,
+      "localPosition": {
+        "x": 10.394447326660156,
+        "y": 0.009008717723190784,
+        "z": -7.63775634765625
+      },
+      "localScale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "position": {
+        "x": -171.92520141601562,
+        "y": 17.826309204101562,
+        "z": 309.18963623046875
+      },
+      "lossyScale": {
+        "x": 0.7000001668930054,
+        "y": 0.7000001668930054,
+        "z": 0.6999999284744263
+      },
+      "localRotation": {
+        "x": -0.7071068286895752,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.7071067094802856
+      },
+      "rotation": {
+        "x": -0.5465138554573059,
+        "y": 0.4486898183822632,
+        "z": 0.4486899971961975,
+        "w": 0.5465137958526611
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "rendererKey": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Stone[5]",
+      "mesh": "Stone",
+      "asset": "Assets/KoboldKare/Models/PlayerHome/PlayerHouse.blend",
+      "limitation": "Exact-position welded topology only. Boundary edges can be intentional doors/windows. Thickness, winding and openings require spatial inspection; no invalid-bake inference.",
+      "localBounds": {
+        "m_Center": {
+          "x": -6.973694324493408,
+          "y": -6.121556282043457,
+          "z": 4.7508134841918945
+        },
+        "m_Extent": {
+          "x": 16.799455642700195,
+          "y": 13.153700828552246,
+          "z": 5.757323265075684
+        }
+      },
+      "worldBounds": {
+        "m_Center": {
+          "x": -168.67262268066406,
+          "y": 21.151878356933594,
+          "z": 314.8121337890625
+        },
+        "m_Extent": {
+          "x": 11.32107925415039,
+          "y": 4.0301289558410645,
+          "z": 13.327359199523926
+        }
+      },
+      "vertices": 4360,
+      "subMeshes": 2,
+      "triangles": 2154,
+      "boundaryEdges": 534,
+      "nonManifoldEdges": 8,
+      "degenerateTriangles": 0,
+      "readable": false,
+      "negativeDeterminant": false
+    }
+  ],
+  "rendererCount": 4620,
+  "houseRenderers": [
+    {
+      "id": 1849898,
+      "lightmapIndex": 5,
+      "realtimeLightmapIndex": -1,
+      "staticBatchIndex": -1,
+      "layer": 10,
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Carpet[0]::MeshRenderer[0]",
+      "path": "FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Carpet[0]",
+      "scene": "Assets/KoboldKare/Scenes/MainMap.unity",
+      "name": "Carpet",
+      "type": "MeshRenderer",
+      "mesh": "Carpet",
+      "meshAsset": "Assets/KoboldKare/Models/PlayerHome/PlayerHouse.blend",
+      "meshId": 66776,
+      "subMeshes": 1,
+      "vertices": 71,
+      "enabled": true,
+      "active": true,
+      "isVisibleObserved": false,
+      "frustumCandidate": false,
+      "staticBatch": false,
+      "propertyBlock": false,
+      "occluderStatic": true,
+      "occludeeStatic": true,
+      "staticFlagsAvailable": true,
+      "shadowCasting": "Off",
+      "receiveShadows": "True",
+      "staticFlags": "-1",
+      "asset": "GlobalObjectId_V1-2-6e526b4b02d74304da54674720eaf458-17858710227796033420-1134951247",
+      "bounds": {
+        "m_Center": {
+          "x": -171.12315368652344,
+          "y": 17.892536163330078,
+          "z": 314.22796630859375
+        },
+        "m_Extent": {
+          "x": 8.046443939208984,
+          "y": 0.0716034322977066,
+          "z": 11.307819366455078
+        }
+      },
+      "meshBounds": {
+        "m_Center": {
+          "x": -0.9310665130615234,
+          "y": -5.52754020690918,
+          "z": 0.02651723101735115
+        },
+        "m_Extent": {
+          "x": 14.723034858703613,
+          "y": 8.796561241149902,
+          "z": 0.10228729248046875
+        }
+      },
+      "lightmapScaleOffset": {
+        "x": 0.07003740966320038,
+        "y": 0.07003740966320038,
+        "z": 0.6294019818305969,
+        "w": -0.00041961041279137135
+      },
+      "materials": [
+        {
+          "id": 49612,
+          "name": "Fabric",
+          "asset": "Assets/KoboldKare/Materials/MapMaterials/Fabric.mat",
+          "shader": "MappedDecalable",
+          "keywords": [],
+          "instancing": false,
+          "renderQueue": 2000,
+          "passCount": 7
+        }
+      ]
+    },
+    {
+      "id": 1833040,
+      "lightmapIndex": 4,
+      "realtimeLightmapIndex": -1,
+      "staticBatchIndex": -1,
+      "layer": 10,
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Concrete[1]::MeshRenderer[0]",
+      "path": "FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Concrete[1]",
+      "scene": "Assets/KoboldKare/Scenes/MainMap.unity",
+      "name": "Concrete",
+      "type": "MeshRenderer",
+      "mesh": "Concrete",
+      "meshAsset": "Assets/KoboldKare/Models/PlayerHome/PlayerHouse.blend",
+      "meshId": 66782,
+      "subMeshes": 1,
+      "vertices": 2813,
+      "enabled": true,
+      "active": true,
+      "isVisibleObserved": false,
+      "frustumCandidate": false,
+      "staticBatch": false,
+      "propertyBlock": false,
+      "occluderStatic": true,
+      "occludeeStatic": true,
+      "staticFlagsAvailable": true,
+      "shadowCasting": "On",
+      "receiveShadows": "True",
+      "staticFlags": "-1",
+      "asset": "GlobalObjectId_V1-2-6e526b4b02d74304da54674720eaf458-18100324165651487171-1134951247",
+      "bounds": {
+        "m_Center": {
+          "x": -169.36831665039062,
+          "y": 19.7783145904541,
+          "z": 314.2994689941406
+        },
+        "m_Extent": {
+          "x": 9.644991874694824,
+          "y": 2.4238123893737793,
+          "z": 11.376961708068848
+        }
+      },
+      "meshBounds": {
+        "m_Center": {
+          "x": 3.9456300735473633,
+          "y": 2.797586441040039,
+          "z": -2.633638381958008
+        },
+        "m_Extent": {
+          "x": 14.346741676330566,
+          "y": 3.4625864028930664,
+          "z": 11.199455261230469
+        }
+      },
+      "lightmapScaleOffset": {
+        "x": 0.04944591224193573,
+        "y": 0.04944591224193573,
+        "z": 0.8501770496368408,
+        "w": 0.2565902769565582
+      },
+      "materials": [
+        {
+          "id": 52928,
+          "name": "concrete_polished_matte_small",
+          "asset": "Assets/KoboldKare/Materials/MapMaterials/concrete_polished_matte_small.mat",
+          "shader": "MappedDecalable",
+          "keywords": [],
+          "instancing": false,
+          "renderQueue": 2000,
+          "passCount": 7
+        }
+      ]
+    },
+    {
+      "id": 1824174,
+      "lightmapIndex": 4,
+      "realtimeLightmapIndex": -1,
+      "staticBatchIndex": -1,
+      "layer": 10,
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Foundation_Cube[2]::MeshRenderer[0]",
+      "path": "FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Foundation_Cube[2]",
+      "scene": "Assets/KoboldKare/Scenes/MainMap.unity",
+      "name": "Foundation_Cube",
+      "type": "MeshRenderer",
+      "mesh": "Foundation_Cube",
+      "meshAsset": "Assets/KoboldKare/Models/PlayerHome/PlayerHouse.blend",
+      "meshId": 66778,
+      "subMeshes": 1,
+      "vertices": 48,
+      "enabled": true,
+      "active": true,
+      "isVisibleObserved": false,
+      "frustumCandidate": false,
+      "staticBatch": false,
+      "propertyBlock": false,
+      "occluderStatic": true,
+      "occludeeStatic": true,
+      "staticFlagsAvailable": true,
+      "shadowCasting": "On",
+      "receiveShadows": "True",
+      "staticFlags": "LightmapStatic, OccluderStatic, BatchingStatic, NavigationStatic, OccludeeStatic, OffMeshLinkGeneration, ReflectionProbeStatic",
+      "asset": "GlobalObjectId_V1-2-6e526b4b02d74304da54674720eaf458-14015402171815858586-1134951247",
+      "bounds": {
+        "m_Center": {
+          "x": -168.01976013183594,
+          "y": 16.860139846801758,
+          "z": 311.3253173828125
+        },
+        "m_Extent": {
+          "x": 10.873210906982422,
+          "y": 1.367638111114502,
+          "z": 10.069683074951172
+        }
+      },
+      "meshBounds": {
+        "m_Center": {
+          "x": 8.488205909729004,
+          "y": -1.3712339401245117,
+          "z": -1.5712804794311523
+        },
+        "m_Extent": {
+          "x": 11.994988441467285,
+          "y": 1.953766107559204,
+          "z": 13.455134391784668
+        }
+      },
+      "lightmapScaleOffset": {
+        "x": 0.1715540885925293,
+        "y": 0.1715540885925293,
+        "z": 0.4240994453430176,
+        "w": 0.4780665636062622
+      },
+      "materials": [
+        {
+          "id": 48214,
+          "name": "trowled_concrete",
+          "asset": "Assets/KoboldKare/Materials/MapMaterials/trowled_concrete.mat",
+          "shader": "MappedDecalable",
+          "keywords": [],
+          "instancing": false,
+          "renderQueue": 2000,
+          "passCount": 7
+        }
+      ]
+    },
+    {
+      "id": 1856000,
+      "lightmapIndex": 4,
+      "realtimeLightmapIndex": -1,
+      "staticBatchIndex": -1,
+      "layer": 10,
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Metal[3]::MeshRenderer[0]",
+      "path": "FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Metal[3]",
+      "scene": "Assets/KoboldKare/Scenes/MainMap.unity",
+      "name": "Metal",
+      "type": "MeshRenderer",
+      "mesh": "Metal",
+      "meshAsset": "Assets/KoboldKare/Models/PlayerHome/PlayerHouse.blend",
+      "meshId": 66786,
+      "subMeshes": 1,
+      "vertices": 1203,
+      "enabled": true,
+      "active": true,
+      "isVisibleObserved": false,
+      "frustumCandidate": false,
+      "staticBatch": false,
+      "propertyBlock": false,
+      "occluderStatic": true,
+      "occludeeStatic": true,
+      "staticFlagsAvailable": true,
+      "shadowCasting": "On",
+      "receiveShadows": "True",
+      "staticFlags": "-1",
+      "asset": "GlobalObjectId_V1-2-6e526b4b02d74304da54674720eaf458-832843216365915950-1134951247",
+      "bounds": {
+        "m_Center": {
+          "x": -174.65744018554688,
+          "y": 19.24653434753418,
+          "z": 303.06890869140625
+        },
+        "m_Extent": {
+          "x": 0.9622249007225037,
+          "y": 1.4362280368804932,
+          "z": 0.7575872540473938
+        }
+      },
+      "meshBounds": {
+        "m_Center": {
+          "x": 7.721735000610352,
+          "y": 1.4121769666671753,
+          "z": -5.715158462524414
+        },
+        "m_Extent": {
+          "x": 0.8590400218963623,
+          "y": 2.0517539978027344,
+          "z": 1.2309014797210693
+        }
+      },
+      "lightmapScaleOffset": {
+        "x": 0.013308713212609291,
+        "y": 0.013308713212609291,
+        "z": 0.9839653372764587,
+        "w": 0.06697317212820053
+      },
+      "materials": [
+        {
+          "id": 48210,
+          "name": "TexturedBrass",
+          "asset": "Assets/KoboldKare/Materials/Casino/TexturedBrass.mat",
+          "shader": "MappedDecalable",
+          "keywords": [],
+          "instancing": false,
+          "renderQueue": 2000,
+          "passCount": 7
+        }
+      ]
+    },
+    {
+      "id": 1868310,
+      "lightmapIndex": -1,
+      "realtimeLightmapIndex": -1,
+      "staticBatchIndex": -1,
+      "layer": 0,
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Metal[3]/ShowerFaucet[0]/FluidOutputNew[0]::MeshRenderer[0]",
+      "path": "FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Metal[3]/ShowerFaucet[0]/FluidOutputNew[0]",
+      "scene": "Assets/KoboldKare/Scenes/MainMap.unity",
+      "name": "FluidOutputNew",
+      "type": "MeshRenderer",
+      "mesh": "fluid_0",
+      "meshAsset": "Assets/KoboldKare/Models/FluidFrames/fluid_0.fbx",
+      "meshId": 62690,
+      "subMeshes": 1,
+      "vertices": 26205,
+      "enabled": false,
+      "active": true,
+      "isVisibleObserved": false,
+      "frustumCandidate": false,
+      "staticBatch": false,
+      "propertyBlock": false,
+      "occluderStatic": false,
+      "occludeeStatic": false,
+      "staticFlagsAvailable": true,
+      "shadowCasting": "On",
+      "receiveShadows": "True",
+      "staticFlags": "0",
+      "asset": "GlobalObjectId_V1-2-6e526b4b02d74304da54674720eaf458-4274595427072518775-359322812",
+      "bounds": {
+        "m_Center": {
+          "x": -173.98944091796875,
+          "y": 18.51919174194336,
+          "z": 303.78778076171875
+        },
+        "m_Extent": {
+          "x": 0.27058741450309753,
+          "y": 1.8802577257156372,
+          "z": 0.30651724338531494
+        }
+      },
+      "meshBounds": {
+        "m_Center": {
+          "x": -0.00715157575905323,
+          "y": -0.34755030274391174,
+          "z": -0.0004291050136089325
+        },
+        "m_Extent": {
+          "x": 0.05195840448141098,
+          "y": 0.36411532759666443,
+          "z": 0.043107714504003525
+        }
+      },
+      "lightmapScaleOffset": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "materials": [
+        {
+          "id": 62688,
+          "name": "FluidStream",
+          "asset": "Assets/KoboldKare/Materials/FluidStream.mat",
+          "shader": "FluidStream",
+          "keywords": [],
+          "instancing": false,
+          "renderQueue": 2000,
+          "passCount": 9
+        }
+      ]
+    },
+    {
+      "id": 1834044,
+      "lightmapIndex": -1,
+      "realtimeLightmapIndex": -1,
+      "staticBatchIndex": -1,
+      "layer": 0,
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Metal[3]/ShowerFaucet[0]/FluidOutputNew[0]/Splatter[0]::VFXRenderer[0]",
+      "path": "FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Metal[3]/ShowerFaucet[0]/FluidOutputNew[0]/Splatter[0]",
+      "scene": "Assets/KoboldKare/Scenes/MainMap.unity",
+      "name": "Splatter",
+      "type": "VFXRenderer",
+      "mesh": "",
+      "meshAsset": "",
+      "meshId": 0,
+      "subMeshes": 0,
+      "vertices": 0,
+      "enabled": true,
+      "active": true,
+      "isVisibleObserved": false,
+      "frustumCandidate": false,
+      "staticBatch": false,
+      "propertyBlock": false,
+      "occluderStatic": false,
+      "occludeeStatic": false,
+      "staticFlagsAvailable": true,
+      "shadowCasting": "Off",
+      "receiveShadows": "False",
+      "staticFlags": "0",
+      "asset": "GlobalObjectId_V1-2-6e526b4b02d74304da54674720eaf458-6934490045178707755-359322812",
+      "bounds": {
+        "m_Center": {
+          "x": -173.75494384765625,
+          "y": 20.288728713989258,
+          "z": 303.7966613769531
+        },
+        "m_Extent": {
+          "x": 2.7137327194213867,
+          "y": 2.4192941188812256,
+          "z": 2.187566041946411
+        }
+      },
+      "meshBounds": {
+        "m_Center": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "m_Extent": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "lightmapScaleOffset": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "materials": [
+        {
+          "id": -1176998,
+          "name": "Hidden/VFX/Splatter/splatters/Output Particle Quad",
+          "asset": "",
+          "shader": "Hidden/VFX/Splatter/splatters/Output Particle Quad",
+          "keywords": [],
+          "instancing": false,
+          "renderQueue": 3000,
+          "passCount": 4
+        },
+        {
+          "id": -1177000,
+          "name": "Hidden/VFX/Splatter/circles/Output Particle Quad",
+          "asset": "",
+          "shader": "Hidden/VFX/Splatter/circles/Output Particle Quad",
+          "keywords": [],
+          "instancing": false,
+          "renderQueue": 3000,
+          "passCount": 4
+        },
+        {
+          "id": -1177002,
+          "name": "Hidden/VFX/Splatter/spot particles/Output Particle Quad",
+          "asset": "",
+          "shader": "Hidden/VFX/Splatter/spot particles/Output Particle Quad",
+          "keywords": [],
+          "instancing": false,
+          "renderQueue": 3000,
+          "passCount": 4
+        },
+        {
+          "id": -1177004,
+          "name": "Hidden/VFX/Splatter/mist/Output Particle Quad",
+          "asset": "",
+          "shader": "Hidden/VFX/Splatter/mist/Output Particle Quad",
+          "keywords": [],
+          "instancing": false,
+          "renderQueue": 3000,
+          "passCount": 4
+        }
+      ]
+    },
+    {
+      "id": 1867886,
+      "lightmapIndex": -1,
+      "realtimeLightmapIndex": -1,
+      "staticBatchIndex": -1,
+      "layer": 11,
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/ShowerWheel[4]::MeshRenderer[0]",
+      "path": "FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/ShowerWheel[4]",
+      "scene": "Assets/KoboldKare/Scenes/MainMap.unity",
+      "name": "ShowerWheel",
+      "type": "MeshRenderer",
+      "mesh": "ShowerWheel",
+      "meshAsset": "Assets/KoboldKare/Models/PlayerHome/PlayerHouse.blend",
+      "meshId": 66774,
+      "subMeshes": 1,
+      "vertices": 1545,
+      "enabled": true,
+      "active": true,
+      "isVisibleObserved": false,
+      "frustumCandidate": false,
+      "staticBatch": false,
+      "propertyBlock": false,
+      "occluderStatic": false,
+      "occludeeStatic": false,
+      "staticFlagsAvailable": true,
+      "shadowCasting": "On",
+      "receiveShadows": "True",
+      "staticFlags": "0",
+      "asset": "GlobalObjectId_V1-2-6e526b4b02d74304da54674720eaf458-3510385767933976220-1134951247",
+      "bounds": {
+        "m_Center": {
+          "x": -175.2641143798828,
+          "y": 19.29527473449707,
+          "z": 302.96282958984375
+        },
+        "m_Extent": {
+          "x": 0.10506809502840042,
+          "y": 0.14353211224079132,
+          "z": 0.15837326645851135
+        }
+      },
+      "meshBounds": {
+        "m_Center": {
+          "x": 0.0,
+          "y": 0.07242194563150406,
+          "z": 5.120784044265747e-05
+        },
+        "m_Extent": {
+          "x": 0.20850123465061188,
+          "y": 0.11163666099309921,
+          "z": 0.20504584908485413
+        }
+      },
+      "lightmapScaleOffset": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "materials": [
+        {
+          "id": 48466,
+          "name": "CasinoPigIron",
+          "asset": "Assets/KoboldKare/Materials/Casino/CasinoPigIron.mat",
+          "shader": "MappedDecalable",
+          "keywords": [],
+          "instancing": false,
+          "renderQueue": 2000,
+          "passCount": 7
+        }
+      ]
+    },
+    {
+      "id": 1860196,
+      "lightmapIndex": 4,
+      "realtimeLightmapIndex": -1,
+      "staticBatchIndex": -1,
+      "layer": 10,
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Stone[5]::MeshRenderer[0]",
+      "path": "FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Stone[5]",
+      "scene": "Assets/KoboldKare/Scenes/MainMap.unity",
+      "name": "Stone",
+      "type": "MeshRenderer",
+      "mesh": "Stone",
+      "meshAsset": "Assets/KoboldKare/Models/PlayerHome/PlayerHouse.blend",
+      "meshId": 66772,
+      "subMeshes": 2,
+      "vertices": 4360,
+      "enabled": true,
+      "active": true,
+      "isVisibleObserved": false,
+      "frustumCandidate": false,
+      "staticBatch": false,
+      "propertyBlock": false,
+      "occluderStatic": true,
+      "occludeeStatic": true,
+      "staticFlagsAvailable": true,
+      "shadowCasting": "On",
+      "receiveShadows": "True",
+      "staticFlags": "-1",
+      "asset": "GlobalObjectId_V1-2-6e526b4b02d74304da54674720eaf458-18144007835607218771-1134951247",
+      "bounds": {
+        "m_Center": {
+          "x": -168.67262268066406,
+          "y": 21.151878356933594,
+          "z": 314.8121337890625
+        },
+        "m_Extent": {
+          "x": 11.32107925415039,
+          "y": 4.0301289558410645,
+          "z": 13.327359199523926
+        }
+      },
+      "meshBounds": {
+        "m_Center": {
+          "x": -6.973694324493408,
+          "y": -6.121556282043457,
+          "z": 4.7508134841918945
+        },
+        "m_Extent": {
+          "x": 16.799455642700195,
+          "y": 13.153700828552246,
+          "z": 5.757323265075684
+        }
+      },
+      "lightmapScaleOffset": {
+        "x": 0.2632865905761719,
+        "y": 0.2632865905761719,
+        "z": 0.5855265259742737,
+        "w": -0.0004109736473765224
+      },
+      "materials": [
+        {
+          "id": 62664,
+          "name": "JapaneseBrick",
+          "asset": "Assets/KoboldKare/Materials/JapaneseBrick.mat",
+          "shader": "MappedDecalable",
+          "keywords": [],
+          "instancing": false,
+          "renderQueue": 2000,
+          "passCount": 7
+        },
+        {
+          "id": 48214,
+          "name": "trowled_concrete",
+          "asset": "Assets/KoboldKare/Materials/MapMaterials/trowled_concrete.mat",
+          "shader": "MappedDecalable",
+          "keywords": [],
+          "instancing": false,
+          "renderQueue": 2000,
+          "passCount": 7
+        }
+      ]
+    },
+    {
+      "id": 1825648,
+      "lightmapIndex": -1,
+      "realtimeLightmapIndex": -1,
+      "staticBatchIndex": -1,
+      "layer": 1,
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Window[6]::MeshRenderer[0]",
+      "path": "FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Window[6]",
+      "scene": "Assets/KoboldKare/Scenes/MainMap.unity",
+      "name": "Window",
+      "type": "MeshRenderer",
+      "mesh": "Window",
+      "meshAsset": "Assets/KoboldKare/Models/PlayerHome/PlayerHouse.blend",
+      "meshId": 66784,
+      "subMeshes": 1,
+      "vertices": 42,
+      "enabled": true,
+      "active": true,
+      "isVisibleObserved": false,
+      "frustumCandidate": false,
+      "staticBatch": false,
+      "propertyBlock": false,
+      "occluderStatic": false,
+      "occludeeStatic": false,
+      "staticFlagsAvailable": true,
+      "shadowCasting": "On",
+      "receiveShadows": "True",
+      "staticFlags": "0",
+      "asset": "GlobalObjectId_V1-2-6e526b4b02d74304da54674720eaf458-2005229715816757442-1134951247",
+      "bounds": {
+        "m_Center": {
+          "x": -169.88229370117188,
+          "y": 22.541297912597656,
+          "z": 326.40386962890625
+        },
+        "m_Extent": {
+          "x": 3.184952735900879,
+          "y": 1.1437658071517944,
+          "z": 0.6430411338806152
+        }
+      },
+      "meshBounds": {
+        "m_Center": {
+          "x": 0.0076701100915670395,
+          "y": 1.560058355331421,
+          "z": 0.01308751106262207
+        },
+        "m_Extent": {
+          "x": 0.01637496054172516,
+          "y": 1.6339507102966309,
+          "z": 4.63546085357666
+        }
+      },
+      "lightmapScaleOffset": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 0.0,
+        "w": 0.0
+      },
+      "materials": [
+        {
+          "id": 55994,
+          "name": "WindowMat",
+          "asset": "Assets/KoboldKare/Models/PlayerHome/PlayerHouse.blend",
+          "shader": "Universal Render Pipeline/Lit",
+          "keywords": [],
+          "instancing": false,
+          "renderQueue": 2000,
+          "passCount": 7
+        }
+      ]
+    },
+    {
+      "id": 1838876,
+      "lightmapIndex": 4,
+      "realtimeLightmapIndex": -1,
+      "staticBatchIndex": -1,
+      "layer": 10,
+      "key": "Assets/KoboldKare/Scenes/MainMap.unity::FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Wood[7]::MeshRenderer[0]",
+      "path": "FarmRegion[5]/PlayerHome[3]/Structure[0]/PlayerHouse[2]/Wood[7]",
+      "scene": "Assets/KoboldKare/Scenes/MainMap.unity",
+      "name": "Wood",
+      "type": "MeshRenderer",
+      "mesh": "Wood",
+      "meshAsset": "Assets/KoboldKare/Models/PlayerHome/PlayerHouse.blend",
+      "meshId": 66770,
+      "subMeshes": 1,
+      "vertices": 2142,
+      "enabled": true,
+      "active": true,
+      "isVisibleObserved": false,
+      "frustumCandidate": false,
+      "staticBatch": false,
+      "propertyBlock": false,
+      "occluderStatic": true,
+      "occludeeStatic": true,
+      "staticFlagsAvailable": true,
+      "shadowCasting": "On",
+      "receiveShadows": "True",
+      "staticFlags": "-1",
+      "asset": "GlobalObjectId_V1-2-6e526b4b02d74304da54674720eaf458-5696494855991954268-1134951247",
+      "bounds": {
+        "m_Center": {
+          "x": -168.64906311035156,
+          "y": 20.44293975830078,
+          "z": 314.8847351074219
+        },
+        "m_Extent": {
+          "x": 11.4246826171875,
+          "y": 3.3211894035339355,
+          "z": 13.584136962890625
+        }
+      },
+      "meshBounds": {
+        "m_Center": {
+          "x": 3.3255972862243652,
+          "y": 3.7470529079437256,
+          "z": -1.4629993438720703
+        },
+        "m_Extent": {
+          "x": 17.157596588134766,
+          "y": 4.744553089141846,
+          "z": 13.233500480651855
+        }
+      },
+      "lightmapScaleOffset": {
+        "x": 0.13204777240753174,
+        "y": 0.13204777240753174,
+        "z": 0.8505859375,
+        "w": 0.0
+      },
+      "materials": [
+        {
+          "id": 48788,
+          "name": "parquet_wood",
+          "asset": "Assets/KoboldKare/Materials/MapMaterials/parquet_wood.mat",
+          "shader": "MappedDecalable",
+          "keywords": [],
+          "instancing": false,
+          "renderQueue": 2000,
+          "passCount": 7
+        }
+      ]
+    }
+  ]
+}

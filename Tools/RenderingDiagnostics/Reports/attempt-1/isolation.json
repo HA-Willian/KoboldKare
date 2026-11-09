@@ -1,0 +1,208 @@
+{
+  "A": {
+    "configurations": {
+      "original": {
+        "batches": 220.0,
+        "setpass": 78.0,
+        "draws": 304.0,
+        "shadowCasters": 197.0,
+        "frameMs": 16.663274727761745,
+        "mainThreadNs": 16662675.0,
+        "renderThreadNs": 0.0,
+        "gpuNs": null,
+        "cpuTimingMs": null,
+        "gpuTimingMs": null
+      },
+      "no-occlusion": {
+        "batches": 2896.0,
+        "setpass": 359.5,
+        "draws": 3102.0,
+        "shadowCasters": 202.0,
+        "frameMs": 16.662050038576126,
+        "mainThreadNs": 16657825.0,
+        "renderThreadNs": 0.0,
+        "gpuNs": null,
+        "cpuTimingMs": null,
+        "gpuTimingMs": null
+      },
+      "no-shadows": {
+        "batches": 110.0,
+        "setpass": 63.0,
+        "draws": 113.0,
+        "shadowCasters": 0.0,
+        "frameMs": 16.66015014052391,
+        "mainThreadNs": 16654500.0,
+        "renderThreadNs": 0.0,
+        "gpuNs": null,
+        "cpuTimingMs": null,
+        "gpuTimingMs": null
+      },
+      "neither": {
+        "batches": 2777.5,
+        "setpass": 336.5,
+        "draws": 2898.5,
+        "shadowCasters": 0.0,
+        "frameMs": 16.65597502142191,
+        "mainThreadNs": 16653800.0,
+        "renderThreadNs": 0.0,
+        "gpuNs": null,
+        "cpuTimingMs": null,
+        "gpuTimingMs": null
+      }
+    },
+    "effects": {
+      "batches": {
+        "occlusion_saving_with_shadows": 2676.0,
+        "occlusion_saving_without_shadows": 2667.5,
+        "shadow_cost_with_occlusion": 110.0,
+        "shadow_cost_without_occlusion": 118.5,
+        "interaction": -8.5
+      },
+      "setpass": {
+        "occlusion_saving_with_shadows": 281.5,
+        "occlusion_saving_without_shadows": 273.5,
+        "shadow_cost_with_occlusion": 15.0,
+        "shadow_cost_without_occlusion": 23.0,
+        "interaction": -8.0
+      },
+      "draws": {
+        "occlusion_saving_with_shadows": 2798.0,
+        "occlusion_saving_without_shadows": 2785.5,
+        "shadow_cost_with_occlusion": 191.0,
+        "shadow_cost_without_occlusion": 203.5,
+        "interaction": -12.5
+      },
+      "shadowCasters": {
+        "occlusion_saving_with_shadows": 5.0,
+        "occlusion_saving_without_shadows": 0.0,
+        "shadow_cost_with_occlusion": 197.0,
+        "shadow_cost_without_occlusion": 202.0,
+        "interaction": -5.0
+      },
+      "frameMs": {
+        "occlusion_saving_with_shadows": -0.0012246891856193542,
+        "occlusion_saving_without_shadows": -0.00417511910200119,
+        "shadow_cost_with_occlusion": 0.0031245872378349304,
+        "shadow_cost_without_occlusion": 0.006075017154216766,
+        "interaction": -0.002950429916381836
+      },
+      "mainThreadNs": {
+        "occlusion_saving_with_shadows": -4850.0,
+        "occlusion_saving_without_shadows": -700.0,
+        "shadow_cost_with_occlusion": 8175.0,
+        "shadow_cost_without_occlusion": 4025.0,
+        "interaction": 4150.0
+      },
+      "renderThreadNs": {
+        "occlusion_saving_with_shadows": 0.0,
+        "occlusion_saving_without_shadows": 0.0,
+        "shadow_cost_with_occlusion": 0.0,
+        "shadow_cost_without_occlusion": 0.0,
+        "interaction": 0.0
+      }
+    }
+  },
+  "B": {
+    "configurations": {
+      "original": {
+        "batches": 449.0,
+        "setpass": 139.0,
+        "draws": 535.0,
+        "shadowCasters": 188.0,
+        "frameMs": 16.659775283187628,
+        "mainThreadNs": 16667725.0,
+        "renderThreadNs": 0.0,
+        "gpuNs": null,
+        "cpuTimingMs": null,
+        "gpuTimingMs": null
+      },
+      "no-occlusion": {
+        "batches": 2822.5,
+        "setpass": 348.5,
+        "draws": 3013.5,
+        "shadowCasters": 195.0,
+        "frameMs": 16.658850014209747,
+        "mainThreadNs": 16652700.0,
+        "renderThreadNs": 0.0,
+        "gpuNs": null,
+        "cpuTimingMs": null,
+        "gpuTimingMs": null
+      },
+      "no-shadows": {
+        "batches": 342.0,
+        "setpass": 107.0,
+        "draws": 354.0,
+        "shadowCasters": 0.0,
+        "frameMs": 16.663650516420603,
+        "mainThreadNs": 16654725.0,
+        "renderThreadNs": 0.0,
+        "gpuNs": null,
+        "cpuTimingMs": null,
+        "gpuTimingMs": null
+      },
+      "neither": {
+        "batches": 2708.0,
+        "setpass": 324.0,
+        "draws": 2813.0,
+        "shadowCasters": 0.0,
+        "frameMs": 16.66710013523698,
+        "mainThreadNs": 16654650.0,
+        "renderThreadNs": 0.0,
+        "gpuNs": null,
+        "cpuTimingMs": null,
+        "gpuTimingMs": null
+      }
+    },
+    "effects": {
+      "batches": {
+        "occlusion_saving_with_shadows": 2373.5,
+        "occlusion_saving_without_shadows": 2366.0,
+        "shadow_cost_with_occlusion": 107.0,
+        "shadow_cost_without_occlusion": 114.5,
+        "interaction": -7.5
+      },
+      "setpass": {
+        "occlusion_saving_with_shadows": 209.5,
+        "occlusion_saving_without_shadows": 217.0,
+        "shadow_cost_with_occlusion": 32.0,
+        "shadow_cost_without_occlusion": 24.5,
+        "interaction": 7.5
+      },
+      "draws": {
+        "occlusion_saving_with_shadows": 2478.5,
+        "occlusion_saving_without_shadows": 2459.0,
+        "shadow_cost_with_occlusion": 181.0,
+        "shadow_cost_without_occlusion": 200.5,
+        "interaction": -19.5
+      },
+      "shadowCasters": {
+        "occlusion_saving_with_shadows": 7.0,
+        "occlusion_saving_without_shadows": 0.0,
+        "shadow_cost_with_occlusion": 188.0,
+        "shadow_cost_without_occlusion": 195.0,
+        "interaction": -7.0
+      },
+      "frameMs": {
+        "occlusion_saving_with_shadows": -0.0009252689778804779,
+        "occlusion_saving_without_shadows": 0.0034496188163757324,
+        "shadow_cost_with_occlusion": -0.003875233232975006,
+        "shadow_cost_without_occlusion": -0.008250121027231216,
+        "interaction": 0.00437488779425621
+      },
+      "mainThreadNs": {
+        "occlusion_saving_with_shadows": -15025.0,
+        "occlusion_saving_without_shadows": -75.0,
+        "shadow_cost_with_occlusion": 13000.0,
+        "shadow_cost_without_occlusion": -1950.0,
+        "interaction": 14950.0
+      },
+      "renderThreadNs": {
+        "occlusion_saving_with_shadows": 0.0,
+        "occlusion_saving_without_shadows": 0.0,
+        "shadow_cost_with_occlusion": 0.0,
+        "shadow_cost_without_occlusion": 0.0,
+        "interaction": 0.0
+      }
+    }
+  }
+}

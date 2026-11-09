@@ -1,0 +1,152 @@
+{
+  "reference": {
+    "utc": "2026-11-08T22:12:43.3717732Z",
+    "unity": "2021.3.45f2",
+    "platform": "WindowsPlayer",
+    "gpu": "NVIDIA GeForce RTX 3080 Ti",
+    "cpu": "AMD Ryzen 7 5700X 8-Core Processor ",
+    "pipeline": "UniversalRenderPipelineAsset",
+    "counterScope": "Global completed-frame counters across ALL cameras/passes, not per-camera draw attribution. Missing counters = -1; missing timings = empty.",
+    "visibilityScope": "Renderer.isVisible is an any-camera/shadow observation; frustum is geometric candidacy only. Neither proves a draw or pass.",
+    "status": "running",
+    "editor": false,
+    "development": true,
+    "vanilla": true,
+    "quality": 0,
+    "width": 1280,
+    "height": 720,
+    "msaa": 2,
+    "cascades": 4,
+    "renderScale": 1.0,
+    "shadowDistance": 100.0,
+    "fov": 90.07194519042969,
+    "aspect": 1.7777777910232544,
+    "config": {
+      "outputDirectory": "Builds/RenderingDiagnostics/Captures/baseline-complete",
+      "width": 1280,
+      "height": 720,
+      "settleFrames": 20,
+      "measureFrames": 30,
+      "observationFrames": 4,
+      "samples": 17,
+      "bisections": 3,
+      "startVanilla": true,
+      "quitWhenDone": true,
+      "screenshots": true,
+      "verticalFov": -1.0,
+      "cameraAspect": -1.0,
+      "shadowDistanceOverride": -1.0,
+      "shadowCascadesOverride": 0,
+      "mode": "suite",
+      "positionA": {
+        "x": -166.19000244140625,
+        "y": 19.6299991607666,
+        "z": 321.1000061035156
+      },
+      "rotationA": {
+        "x": 6.800000190734863,
+        "y": 78.5999984741211,
+        "z": 0.0
+      },
+      "positionB": {
+        "x": -167.6300048828125,
+        "y": 19.6200008392334,
+        "z": 325.20001220703125
+      },
+      "rotationB": {
+        "x": 10.399999618530273,
+        "y": 71.5999984741211,
+        "z": 0.0
+      }
+    },
+    "scenes": [
+      "Assets/KoboldKare/Scenes/MainMap.unity"
+    ],
+    "cameras": [
+      "Assets/KoboldKare/Scenes/MainMap.unity::OrbitCamera[0] | type=Game | occlusion=True | mask=-16385"
+    ],
+    "availableCounters": [
+      "Batches Count | Count",
+      "SetPass Calls Count | Count",
+      "Draw Calls Count | Count",
+      "Shadow Casters Count | Count",
+      "Main Thread | TimeNanoseconds",
+      "Render Thread | TimeNanoseconds"
+    ]
+  },
+  "intervention": {
+    "utc": "2026-11-08T22:15:30.3189083Z",
+    "unity": "2021.3.45f2",
+    "platform": "WindowsPlayer",
+    "gpu": "NVIDIA GeForce RTX 3080 Ti",
+    "cpu": "AMD Ryzen 7 5700X 8-Core Processor ",
+    "pipeline": "UniversalRenderPipelineAsset",
+    "counterScope": "Global completed-frame counters across ALL cameras/passes, not per-camera draw attribution. Missing counters = -1; missing timings = empty.",
+    "visibilityScope": "Renderer.isVisible is an any-camera/shadow observation; frustum is geometric candidacy only. Neither proves a draw or pass.",
+    "status": "running",
+    "editor": false,
+    "development": true,
+    "vanilla": true,
+    "quality": 0,
+    "width": 1280,
+    "height": 720,
+    "msaa": 2,
+    "cascades": 2,
+    "renderScale": 1.0,
+    "shadowDistance": 60.0,
+    "fov": 90.07194519042969,
+    "aspect": 1.7777777910232544,
+    "config": {
+      "outputDirectory": "Builds/RenderingDiagnostics/Captures/attempt-1-shadows",
+      "width": 1280,
+      "height": 720,
+      "settleFrames": 20,
+      "measureFrames": 30,
+      "observationFrames": 4,
+      "samples": 17,
+      "bisections": 3,
+      "startVanilla": true,
+      "quitWhenDone": true,
+      "screenshots": true,
+      "verticalFov": -1.0,
+      "cameraAspect": -1.0,
+      "shadowDistanceOverride": 60.0,
+      "shadowCascadesOverride": 2,
+      "mode": "suite",
+      "positionA": {
+        "x": -166.19000244140625,
+        "y": 19.6299991607666,
+        "z": 321.1000061035156
+      },
+      "rotationA": {
+        "x": 6.800000190734863,
+        "y": 78.5999984741211,
+        "z": 0.0
+      },
+      "positionB": {
+        "x": -167.6300048828125,
+        "y": 19.6200008392334,
+        "z": 325.20001220703125
+      },
+      "rotationB": {
+        "x": 10.399999618530273,
+        "y": 71.5999984741211,
+        "z": 0.0
+      }
+    },
+    "scenes": [
+      "Assets/KoboldKare/Scenes/MainMap.unity"
+    ],
+    "cameras": [
+      "Assets/KoboldKare/Scenes/MainMap.unity::OrbitCamera[0] | type=Game | occlusion=True | mask=-16385"
+    ],
+    "availableCounters": [
+      "Batches Count | Count",
+      "SetPass Calls Count | Count",
+      "Draw Calls Count | Count",
+      "Shadow Casters Count | Count",
+      "Main Thread | TimeNanoseconds",
+      "Render Thread | TimeNanoseconds"
+    ]
+  }
+}

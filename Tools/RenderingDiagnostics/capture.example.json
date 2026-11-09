@@ -1,0 +1,18 @@
+{
+  "outputDirectory": "Builds/RenderingDiagnostics/Captures/reference",
+  "width": 1280,
+  "height": 720,
+  "settleFrames": 60,
+  "measureFrames": 90,
+  "observationFrames": 4,
+  "samples": 17,
+  "bisections": 5,
+  "startVanilla": true,
+  "quitWhenDone": true,
+  "screenshots": true,
+  "mode": "suite",
+  "positionA": {"x": -166.19, "y": 19.63, "z": 321.10},
+  "rotationA": {"x": 6.80, "y": 78.60, "z": 0},
+  "positionB": {"x": -167.63, "y": 19.62, "z": 325.20},
+  "rotationB": {"x": 10.40, "y": 71.60, "z": 0}
+}

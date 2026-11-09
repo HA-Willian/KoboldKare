@@ -1,0 +1,1723 @@
+{
+  "source": "C:\\Users\\ProtoGKS\\Documents\\Unity3D\\KoboldKare-novo\\Assets\\KoboldKare\\Models\\PlayerHome\\PlayerHouse.blend",
+  "objects": [
+    {
+      "object": "Stone",
+      "mesh": "Plane.001",
+      "unit_scale": 1.0,
+      "object_scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 1427,
+      "polygons": 1201,
+      "triangles": 2154,
+      "boundary_edges_by_vertex_index": 534,
+      "nonmanifold_edges_by_vertex_index": 8,
+      "source_bounds": {
+        "min": [
+          -15.203163146972656,
+          -8.75,
+          -0.7500008344650269
+        ],
+        "max": [
+          10.059174537658691,
+          11.030000686645508,
+          7.907628059387207
+        ]
+      },
+      "coplanar_groups": [
+        {
+          "normal": [
+            0.0,
+            -0.0,
+            1.0
+          ],
+          "distance": -0.0,
+          "spans_blender_units": [
+            24.39881992340088,
+            16.0
+          ],
+          "vertex_references": 52
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "distance": 5.45,
+          "spans_blender_units": [
+            10.129998683929443,
+            6.164213538169861
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "distance": -1.69,
+          "spans_blender_units": [
+            10.129998683929443,
+            6.164213538169861
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "distance": 9.45,
+          "spans_blender_units": [
+            10.129998683929443,
+            6.164213538169861
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "distance": -5.69,
+          "spans_blender_units": [
+            10.129998683929443,
+            6.164213538169861
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "distance": -15.01,
+          "spans_blender_units": [
+            7.095519065856934,
+            8.234165787696838
+          ],
+          "vertex_references": 32
+        },
+        {
+          "normal": [
+            -1.0,
+            -0.0,
+            0.0
+          ],
+          "distance": 15.14,
+          "spans_blender_units": [
+            7.095518112182617,
+            8.234165787696838
+          ],
+          "vertex_references": 48
+        },
+        {
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "distance": -9.75,
+          "spans_blender_units": [
+            9.311384677886963,
+            5.6996524930000305
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "distance": 10.03,
+          "spans_blender_units": [
+            9.311384677886963,
+            5.6996524930000305
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "distance": -6.55,
+          "spans_blender_units": [
+            8.150001049041748,
+            6.466181933879852
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            -0.0
+          ],
+          "distance": -3.81,
+          "spans_blender_units": [
+            7.760001182556152,
+            6.466180682182312
+          ],
+          "vertex_references": 52
+        },
+        {
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "distance": 4.07,
+          "spans_blender_units": [
+            7.760001182556152,
+            6.466180622577667
+          ],
+          "vertex_references": 40
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "distance": 5.06,
+          "spans_blender_units": [
+            7.760000228881836,
+            6.164213538169861
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "distance": -4.81,
+          "spans_blender_units": [
+            7.760000228881836,
+            6.164213478565216
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            -0.0
+          ],
+          "distance": -4.81,
+          "spans_blender_units": [
+            7.760000228881836,
+            6.136495769023895
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "distance": 5.06,
+          "spans_blender_units": [
+            7.760000228881836,
+            6.1364957094192505
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "distance": 14.45,
+          "spans_blender_units": [
+            6.829683303833008,
+            6.622021734714508
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "distance": -14.33,
+          "spans_blender_units": [
+            6.829683303833008,
+            6.582631289958954
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "distance": 11.03,
+          "spans_blender_units": [
+            16.382853507995605,
+            2.5823845714330673
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "distance": -6.62,
+          "spans_blender_units": [
+            6.861738681793213,
+            5.966180616058409
+          ],
+          "vertex_references": 44
+        },
+        {
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "distance": 6.78,
+          "spans_blender_units": [
+            6.861738681793213,
+            5.966180616058409
+          ],
+          "vertex_references": 60
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "distance": 2.36,
+          "spans_blender_units": [
+            5.990002155303955,
+            5.555299818515778
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "distance": -2.23,
+          "spans_blender_units": [
+            5.990002155303955,
+            5.515909380745143
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "distance": 9.07,
+          "spans_blender_units": [
+            4.75,
+            5.600000273436308
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "distance": -8.97,
+          "spans_blender_units": [
+            4.75,
+            5.600000273436308
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "distance": -2.18,
+          "spans_blender_units": [
+            4.75,
+            5.600000273436308
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "distance": 2.28,
+          "spans_blender_units": [
+            4.75,
+            5.600000273436308
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            -1.0,
+            -0.0,
+            0.001
+          ],
+          "distance": 15.14,
+          "spans_blender_units": [
+            6.193362474441528,
+            4.20976151060313
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "distance": -0.0,
+          "spans_blender_units": [
+            7.623696804046631,
+            3.376664161682129
+          ],
+          "vertex_references": 71
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "distance": 8.75,
+          "spans_blender_units": [
+            11.350000381469727,
+            2.2633771002292633
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "distance": 4.06,
+          "spans_blender_units": [
+            3.7600011825561523,
+            6.466180622577667
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "distance": 4.09,
+          "spans_blender_units": [
+            3.760000228881836,
+            6.466180980205536
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "distance": -3.84,
+          "spans_blender_units": [
+            3.760000228881836,
+            6.466180920600891
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "distance": 4.07,
+          "spans_blender_units": [
+            3.7600011825561523,
+            6.466035068035126
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "distance": -3.82,
+          "spans_blender_units": [
+            3.7600011825561523,
+            6.466035008430481
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            -1.0,
+            -0.0,
+            0.001
+          ],
+          "distance": 15.21,
+          "spans_blender_units": [
+            6.132728099822998,
+            3.878223833627999
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "distance": 0.37,
+          "spans_blender_units": [
+            6.674267292022705,
+            3.535419464111328
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "distance": 15.2,
+          "spans_blender_units": [
+            6.131104469299316,
+            3.2187130451202393
+          ],
+          "vertex_references": 16
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "distance": -10.91,
+          "spans_blender_units": [
+            7.249999523162842,
+            2.5429939148016274
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "distance": -2.95,
+          "spans_blender_units": [
+            2.039158821105957,
+            8.15000057220459
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            -0.0,
+            1.0
+          ],
+          "distance": 1.22,
+          "spans_blender_units": [
+            2.039158821105957,
+            8.150000095367432
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "distance": 6.99,
+          "spans_blender_units": [
+            8.150001049041748,
+            1.7262753248214722
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "distance": 3.86,
+          "spans_blender_units": [
+            3.7599997520446777,
+            3.1017132997512817
+          ],
+          "vertex_references": 20
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            -0.0
+          ],
+          "distance": -3.61,
+          "spans_blender_units": [
+            3.7599997520446777,
+            3.1017130613327026
+          ],
+          "vertex_references": 20
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            -0.0
+          ],
+          "distance": -3.82,
+          "spans_blender_units": [
+            3.760000228881836,
+            3.017901659011841
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            -0.0
+          ],
+          "distance": 4.08,
+          "spans_blender_units": [
+            3.760000228881836,
+            1.7262738943099976
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "distance": -3.83,
+          "spans_blender_units": [
+            3.760000228881836,
+            1.726273775100708
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "distance": -2.25,
+          "spans_blender_units": [
+            12.75,
+            0.4999998467974365
+          ],
+          "vertex_references": 20
+        },
+        {
+          "normal": [
+            0.0,
+            -0.0,
+            1.0
+          ],
+          "distance": -0.5,
+          "spans_blender_units": [
+            0.6102867126464844,
+            8.0
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.0,
+            -0.0,
+            1.0
+          ],
+          "distance": 0.03,
+          "spans_blender_units": [
+            1.9295597076416016,
+            2.494584083557129
+          ],
+          "vertex_references": 63
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "distance": -6.61,
+          "spans_blender_units": [
+            1.9617600440979004,
+            2.446251405403018
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "distance": 4.0,
+          "spans_blender_units": [
+            18.59999942779541,
+            0.2239999994635582
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "distance": 4.0,
+          "spans_blender_units": [
+            18.59999942779541,
+            0.2239999994635582
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "distance": 6.79,
+          "spans_blender_units": [
+            1.961470127105713,
+            1.578406810760498
+          ],
+          "vertex_references": 16
+        },
+        {
+          "normal": [
+            0.0,
+            -0.0,
+            1.0
+          ],
+          "distance": 3.8,
+          "spans_blender_units": [
+            0.277496337890625,
+            7.059877634048462
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "distance": 1.45,
+          "spans_blender_units": [
+            0.2500009536743164,
+            6.466180682182312
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "distance": 2.31,
+          "spans_blender_units": [
+            0.2500009536743164,
+            6.466180682182312
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "distance": -2.39,
+          "spans_blender_units": [
+            0.2602968215942383,
+            2.0786728858947754
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "distance": 2.64,
+          "spans_blender_units": [
+            0.2602968215942383,
+            2.0697293281555176
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -1.0,
+            0.0,
+            0.0
+          ],
+          "distance": 6.84,
+          "spans_blender_units": [
+            2.0784072875976562,
+            0.24277520179748535
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "distance": -6.56,
+          "spans_blender_units": [
+            2.0784072875976562,
+            0.24277520179748535
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "distance": -6.6,
+          "spans_blender_units": [
+            1.9614696502685547,
+            0.24516034126281738
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "distance": -2.69,
+          "spans_blender_units": [
+            0.06453990936279297,
+            7.096065998077393
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            -0.0,
+            1.0,
+            0.0
+          ],
+          "distance": 3.11,
+          "spans_blender_units": [
+            0.06453990936279297,
+            6.808273792266846
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "distance": -9.17,
+          "spans_blender_units": [
+            0.17066144943237305,
+            2.4462514063343406
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "distance": -7.37,
+          "spans_blender_units": [
+            0.17066144943237305,
+            2.4462514063343406
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "distance": 9.34,
+          "spans_blender_units": [
+            0.17066144943237305,
+            2.4462514016777277
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "distance": 7.54,
+          "spans_blender_units": [
+            0.17066144943237305,
+            2.4462514016777277
+          ],
+          "vertex_references": 24
+        },
+        {
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "distance": 7.36,
+          "spans_blender_units": [
+            0.15914249420166016,
+            2.464181892108172
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            -1.0,
+            0.0
+          ],
+          "distance": -9.34,
+          "spans_blender_units": [
+            0.15914249420166016,
+            2.4641815698705614
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "distance": 1.13,
+          "spans_blender_units": [
+            0.17066144943237305,
+            1.9614696502685547
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "distance": -0.87,
+          "spans_blender_units": [
+            0.17066144943237305,
+            1.9614696502685547
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "distance": 2.46,
+          "spans_blender_units": [
+            0.16556167602539062,
+            1.961470127105713
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "distance": -2.02,
+          "spans_blender_units": [
+            0.16556167602539062,
+            1.961470127105713
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            -0.0,
+            1.0
+          ],
+          "distance": 0.87,
+          "spans_blender_units": [
+            0.1571660041809082,
+            1.9592781066894531
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "distance": -0.38,
+          "spans_blender_units": [
+            0.1571660041809082,
+            1.9592781066894531
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "distance": 1.72,
+          "spans_blender_units": [
+            0.1438760757446289,
+            1.961470127105713
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "distance": -1.14,
+          "spans_blender_units": [
+            0.1438760757446289,
+            1.9614696502685547
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "distance": 2.02,
+          "spans_blender_units": [
+            0.13927078247070312,
+            1.961470127105713
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "distance": -1.73,
+          "spans_blender_units": [
+            0.13927078247070312,
+            1.961470127105713
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.0,
+            1.0,
+            0.0
+          ],
+          "distance": -2.6,
+          "spans_blender_units": [
+            0.06150245666503906,
+            3.2187108397483826
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.0,
+            -1.0,
+            0.0
+          ],
+          "distance": 3.02,
+          "spans_blender_units": [
+            0.06146240234375,
+            3.218712091445923
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.991,
+            0.0,
+            0.136
+          ],
+          "distance": -2.19,
+          "spans_blender_units": [
+            1.8977127075195312,
+            0.07121026515960693
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            0.0,
+            -0.0,
+            1.0
+          ],
+          "distance": 0.04,
+          "spans_blender_units": [
+            0.2978029251098633,
+            0.2845621109008789
+          ],
+          "vertex_references": 16
+        },
+        {
+          "normal": [
+            0.0,
+            0.0,
+            -1.0
+          ],
+          "distance": -0.5,
+          "spans_blender_units": [
+            0.032975196838378906,
+            1.8977127075195312
+          ],
+          "vertex_references": 12
+        },
+        {
+          "normal": [
+            -0.707,
+            -0.707,
+            0.0
+          ],
+          "distance": -1.69,
+          "spans_blender_units": [
+            0.02026510238647461,
+            2.4462514063343406
+          ],
+          "vertex_references": 20
+        },
+        {
+          "normal": [
+            0.707,
+            -0.707,
+            0.0
+          ],
+          "distance": -9.89,
+          "spans_blender_units": [
+            0.01846170425415039,
+            2.446251405403018
+          ],
+          "vertex_references": 16
+        },
+        {
+          "normal": [
+            -0.707,
+            0.707,
+            0.0
+          ],
+          "distance": 11.4,
+          "spans_blender_units": [
+            0.01577138900756836,
+            2.4462514016777277
+          ],
+          "vertex_references": 16
+        },
+        {
+          "normal": [
+            0.707,
+            0.707,
+            0.0
+          ],
+          "distance": 1.93,
+          "spans_blender_units": [
+            0.015770912170410156,
+            2.4462514016777277
+          ],
+          "vertex_references": 16
+        },
+        {
+          "normal": [
+            0.707,
+            -0.707,
+            0.0
+          ],
+          "distance": -11.16,
+          "spans_blender_units": [
+            0.014791011810302734,
+            2.446251405403018
+          ],
+          "vertex_references": 16
+        },
+        {
+          "normal": [
+            -0.707,
+            -0.707,
+            0.0
+          ],
+          "distance": -0.42,
+          "spans_blender_units": [
+            0.01789712905883789,
+            1.9974706312641501
+          ],
+          "vertex_references": 16
+        },
+        {
+          "normal": [
+            0.707,
+            0.707,
+            0.0
+          ],
+          "distance": 0.65,
+          "spans_blender_units": [
+            0.017896175384521484,
+            1.9974706266075373
+          ],
+          "vertex_references": 16
+        },
+        {
+          "normal": [
+            -0.707,
+            0.707,
+            0.0
+          ],
+          "distance": 10.12,
+          "spans_blender_units": [
+            0.017896175384521484,
+            1.9974706266075373
+          ],
+          "vertex_references": 16
+        },
+        {
+          "normal": [
+            -0.707,
+            0.0,
+            -0.707
+          ],
+          "distance": 3.14,
+          "spans_blender_units": [
+            2.078672409057617,
+            0.010750770568847656
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.0,
+            -0.707
+          ],
+          "distance": -6.33,
+          "spans_blender_units": [
+            2.078672409057617,
+            0.010750293731689453
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            0.0,
+            0.707
+          ],
+          "distance": 6.7,
+          "spans_blender_units": [
+            2.0699901580810547,
+            0.010750651359558105
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.0,
+            0.707
+          ],
+          "distance": -2.77,
+          "spans_blender_units": [
+            2.0699901580810547,
+            0.010750174522399902
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            0.0,
+            0.707
+          ],
+          "distance": 6.54,
+          "spans_blender_units": [
+            1.9614696502685547,
+            0.010795354843139648
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.0,
+            -0.707
+          ],
+          "distance": -5.91,
+          "spans_blender_units": [
+            1.9614696502685547,
+            0.010795354843139648
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            0.0,
+            0.707
+          ],
+          "distance": 6.0,
+          "spans_blender_units": [
+            1.9614696502685547,
+            0.010795354843139648
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            0.0,
+            -0.707
+          ],
+          "distance": 3.98,
+          "spans_blender_units": [
+            1.9614691734313965,
+            0.010795295238494873
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            0.0,
+            -0.707
+          ],
+          "distance": 3.36,
+          "spans_blender_units": [
+            1.9614696502685547,
+            0.010795235633850098
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.0,
+            0.707
+          ],
+          "distance": -3.26,
+          "spans_blender_units": [
+            1.9614696502685547,
+            0.010795235633850098
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.0,
+            0.707
+          ],
+          "distance": -2.94,
+          "spans_blender_units": [
+            1.9614696502685547,
+            0.010794878005981445
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            0.0,
+            -0.707
+          ],
+          "distance": 3.56,
+          "spans_blender_units": [
+            1.9614696502685547,
+            0.010794878005981445
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.0,
+            0.707
+          ],
+          "distance": -3.47,
+          "spans_blender_units": [
+            1.9614696502685547,
+            0.010794878005981445
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.0,
+            -0.707
+          ],
+          "distance": -5.49,
+          "spans_blender_units": [
+            1.9614691734313965,
+            0.01079481840133667
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            0.0,
+            0.707
+          ],
+          "distance": 5.6,
+          "spans_blender_units": [
+            1.9614691734313965,
+            0.01079481840133667
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.0,
+            0.707
+          ],
+          "distance": -3.88,
+          "spans_blender_units": [
+            1.9614691734313965,
+            0.01079481840133667
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.0,
+            -0.707
+          ],
+          "distance": -6.11,
+          "spans_blender_units": [
+            1.9614696502685547,
+            0.010794758796691895
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            0.0,
+            0.707
+          ],
+          "distance": 6.21,
+          "spans_blender_units": [
+            1.9614696502685547,
+            0.010794758796691895
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.0,
+            -0.707
+          ],
+          "distance": -5.29,
+          "spans_blender_units": [
+            1.9614691734313965,
+            0.010794758796691895
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            0.0,
+            -0.707
+          ],
+          "distance": 4.18,
+          "spans_blender_units": [
+            1.9614691734313965,
+            0.010794758796691895
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            0.0,
+            -0.707
+          ],
+          "distance": 4.79,
+          "spans_blender_units": [
+            1.9606633186340332,
+            0.01079521351493895
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            0.0,
+            0.707
+          ],
+          "distance": 5.06,
+          "spans_blender_units": [
+            1.9606633186340332,
+            0.01079520583152771
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.0,
+            -0.707
+          ],
+          "distance": -4.68,
+          "spans_blender_units": [
+            1.9606633186340332,
+            0.010794736677780747
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.0,
+            0.707
+          ],
+          "distance": -4.42,
+          "spans_blender_units": [
+            1.9606633186340332,
+            0.010794728994369507
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            -0.0,
+            0.707
+          ],
+          "distance": 5.4,
+          "spans_blender_units": [
+            1.959277629852295,
+            0.010795235633850098
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            0.0,
+            -0.707
+          ],
+          "distance": 4.52,
+          "spans_blender_units": [
+            1.959277629852295,
+            0.01079520583152771
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            -0.0,
+            0.707
+          ],
+          "distance": -4.07,
+          "spans_blender_units": [
+            1.959277629852295,
+            0.010794758796691895
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.0,
+            -0.707
+          ],
+          "distance": -4.95,
+          "spans_blender_units": [
+            1.959277629852295,
+            0.010794728994369507
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            -0.707,
+            0.0
+          ],
+          "distance": -0.41,
+          "spans_blender_units": [
+            0.012598514556884766,
+            1.578406810760498
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            0.707,
+            0.0
+          ],
+          "distance": 10.13,
+          "spans_blender_units": [
+            0.01259756088256836,
+            1.5784067511558533
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.707,
+            0.0
+          ],
+          "distance": 0.66,
+          "spans_blender_units": [
+            0.012597084045410156,
+            1.5784067511558533
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.03,
+            -0.075,
+            0.997
+          ],
+          "distance": -1.09,
+          "spans_blender_units": [
+            0.3117809295654297,
+            0.045081912307068706
+          ],
+          "vertex_references": 6
+        },
+        {
+          "normal": [
+            -0.031,
+            0.073,
+            0.997
+          ],
+          "distance": 1.16,
+          "spans_blender_units": [
+            0.2992687225341797,
+            0.0439462976064533
+          ],
+          "vertex_references": 6
+        },
+        {
+          "normal": [
+            0.707,
+            -0.707,
+            0.0
+          ],
+          "distance": -11.17,
+          "spans_blender_units": [
+            0.012423038482666016,
+            0.8601821660995483
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            0.707,
+            0.707,
+            0.0
+          ],
+          "distance": 1.92,
+          "spans_blender_units": [
+            0.012423038482666016,
+            0.8601821660995483
+          ],
+          "vertex_references": 8
+        },
+        {
+          "normal": [
+            -0.707,
+            0.707,
+            0.0
+          ],
+          "distance": 11.39,
+          "spans_blender_units": [
+            0.012423038482666016,
+            0.8601821660995483
+          ],
+          "vertex_references": 8
+        }
+      ],
+      "ray_audit": {
+        "sampled_rays": 418,
+        "rays_with_hits": 295,
+        "entry_exit_pairs": 554,
+        "same_facing_adjacent_pairs": 19,
+        "thickness_min_blender_units": 0.05000019073486328,
+        "thickness_median_blender_units": 0.2499990463256836,
+        "thickness_max_blender_units": 16.811586380004883,
+        "pairs_below_0_3_units": 550,
+        "limitation": "Grid ray samples and face winding, not an exhaustive watertightness test. Same-facing pairs can come from intentionally open/disconnected geometry. Smallest Hole describes openings, not a required minimum wall thickness."
+      },
+      "limitation": "Read-only source audit. Approximate plane groups can include disconnected pieces and openings. Blender and imported Unity object coordinates differ; source spans alone do not establish world wall dimensions or invalid occlusion."
+    }
+  ]
+}

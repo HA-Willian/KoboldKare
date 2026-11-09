@@ -1,0 +1,82 @@
+{
+  "acceptance": "Atualizado pelo usuário: comparação próxima entre cenários/poses, sem exigir 319 Batches / 99 SetPass exatos. Não inferir ganho de frame time sob cap externo.",
+  "limit": 5,
+  "attempts": [
+    {
+      "number": 1,
+      "hypothesis": "Reduzir o volume e as cascatas de sombras diminui os eventos extras de B.",
+      "intervention": "Cópia URP runtime: distância 100 para 60, cascatas 4 para 2.",
+      "validation": "Completa: matriz, três percursos nos dois sentidos com 17 amostras, bisseção e quatro poses extras.",
+      "baselineA": {
+        "batches": 302,
+        "setpass": 90
+      },
+      "baselineB": {
+        "batches": 581,
+        "setpass": 168
+      },
+      "resultA": {
+        "batches": 220,
+        "setpass": 78
+      },
+      "resultB": {
+        "batches": 449,
+        "setpass": 139
+      },
+      "visual": "Imagens A/B e quatro poses extras disponíveis. Inspeção da pose B não mostrou desaparecimento de geometria ou perda evidente das sombras locais. Cobertura visual não prova qualidade em todo o mapa.",
+      "decision": "Not retained: the bake-only correction reaches closer A/B counts while preserving original shadow distance/cascades.",
+      "report": "attempt-1/REPORT.md"
+    },
+    {
+      "number": 2,
+      "hypothesis": "Finer baked occlusion can reduce conservative, position-dependent visibility.",
+      "intervention": "Smallest Occluder 5 to 3; Smallest Hole 0.25 and Backface Threshold 100 unchanged. Full rebake.",
+      "validation": "Completed matrix, 17 samples in each direction for all three paths, bisection, and four extra poses.",
+      "baselineA": {
+        "batches": 302,
+        "setpass": 90
+      },
+      "baselineB": {
+        "batches": 581,
+        "setpass": 168
+      },
+      "resultA": {
+        "batches": 177,
+        "setpass": 73
+      },
+      "resultB": {
+        "batches": 167,
+        "setpass": 67
+      },
+      "visual": "A/B and four extra screenshots inspected; no visible disappearance or local shadow loss.",
+      "decision": "Retained. Final check: A 177/71, B 167/66. Original shadows preserved. No further corrective attempts needed.",
+      "report": "attempt-2/REPORT.md",
+      "finalA": {
+        "batches": 177,
+        "setpass": 71
+      },
+      "finalB": {
+        "batches": 167,
+        "setpass": 66
+      }
+    }
+  ],
+  "failedExperiments": [
+    {
+      "prospectiveNumber": 2,
+      "hypothesis": "Resolução mais fina do bake pode reduzir visibilidade conservadora dependente da posição, sem pressupor bake inválido.",
+      "intervention": "Smallest Occluder 5 para 1.5; Smallest Hole 0.25 para 0.2; Backface Threshold preservado em 100.",
+      "backup": "../../../Builds/RenderingDiagnostics/BakeBackups/attempt-2-original",
+      "status": "Failed before validation: Out of memory in TomeGenerator. Original scene/bake restored. 916134 tiles."
+    }
+  ],
+  "toolingIncident": {
+    "description": "Moderate native bake completed successfully, but the guard rejected it after broad log capture; original bytes were restored. The generated primary artifact is virtual, so it cannot be recovered as a standalone cached source asset.",
+    "fix": "Guard now matches fatal occlusion/TomeGenerator/OOM errors only, does not treat a transient zero data size as fatal, and preserves generated output before any restoration.",
+    "retry": "Same bake settings retried using existing native cache; remains the prospective corrective attempt 2, with full validation still required."
+  },
+  "validatedAttempts": 2,
+  "complete": true,
+  "acceptanceMet": true,
+  "formatIncident": "A format conversion reserialized dependencies; the operation was removed and all unrelated files/local edits were restored. Bake remains original text format."
+}

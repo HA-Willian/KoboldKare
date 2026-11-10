@@ -1,9 +1,13 @@
+using Unity.Profiling;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace PenetrationTech {
     public class CatmullSpline {
+        private static readonly ProfilerMarker rebuildMarker = new ProfilerMarker("Penetration.Spline.Rebuild");
+        private static readonly ProfilerMarker distanceMarker = new ProfilerMarker("Penetration.Spline.DistanceLUT");
+        private static readonly ProfilerMarker binormalMarker = new ProfilerMarker("Penetration.Spline.BinormalLUT");
         private static Matrix4x4 catmullMatrix = new Matrix4x4(
             new Vector4(0f, 2f, 0f, 0f)*0.5f,
             new Vector4(-1f, 0f, 1f, 0f)*0.5f,
@@ -161,6 +165,7 @@ namespace PenetrationTech {
             }
         }
         protected void GenerateDistanceLUT(int resolution) {
+            using var profilingScope = distanceMarker.Auto();
             float dist = 0f;
             Vector3 lastPosition = GetPositionFromT(0f);
             distanceLUT.Clear();
@@ -174,6 +179,7 @@ namespace PenetrationTech {
             arcLength = dist;
         }
         protected void GenerateBinormalLUT(int resolution) {
+            using var profilingScope = binormalMarker.Auto();
             // https://en.wikipedia.org/wiki/Frenet%E2%80%93Serret_formulas
             // https://janakiev.com/blog/framing-parametric-curves/
             binormalLUT.Clear();
@@ -270,6 +276,7 @@ namespace PenetrationTech {
         }
 
         public CatmullSpline SetWeightsFromPoints(IList<Vector3> newPoints) {
+            using var profilingScope = rebuildMarker.Auto();
             weights.Clear();
             GetWeightsFromPoints(weights,newPoints);
             GenerateDistanceLUT(32);

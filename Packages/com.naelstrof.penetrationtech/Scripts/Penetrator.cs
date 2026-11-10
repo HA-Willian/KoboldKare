@@ -1,3 +1,4 @@
+using Unity.Profiling;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -43,6 +44,8 @@ namespace PenetrationTech {
     #endif
     [ExecuteAlways]
     public class Penetrator : CatmullDeformer {
+        private static readonly ProfilerMarker autoSeekMarker = new ProfilerMarker("Penetration.Penetrator.AutoSeek");
+        private static readonly ProfilerMarker lateUpdateMarker = new ProfilerMarker("Penetration.Penetrator.LateUpdate");
         private CatmullSpline path;
         [System.Flags]
         private enum AutoPenetrateMode {
@@ -386,6 +389,7 @@ namespace PenetrationTech {
         }
 
         protected override void LateUpdate() {
+            using var profilingScope = lateUpdateMarker.Auto();
             if (!valid && !Application.isPlaying) {
                 return;
             }
@@ -427,6 +431,7 @@ namespace PenetrationTech {
             
             targetHoleLerp = Mathf.MoveTowards(targetHoleLerp, 1f, Time.deltaTime*8f);
             if ((autoPenetrate&AutoPenetrateMode.AutoSeek)!=0 && !inserted && Math.Abs(targetHoleLerp - 1f) < 0.001f) {
+                using var autoSeekScope = autoSeekMarker.Auto();
                 GetTipPositionAndTangent(path, out Vector3 newTipPosition, out Vector3 newTipTangent);
                 int hits = Physics.OverlapSphereNonAlloc(newTipPosition, GetWorldLength()*penetrationMarginOfError+1f, colliders, PenetrationTechTools.GetPenetrableMask(), QueryTriggerInteraction.Collide);
                 PenetrableOwner bestMatch = null;

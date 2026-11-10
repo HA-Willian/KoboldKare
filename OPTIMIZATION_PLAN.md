@@ -97,3 +97,69 @@ Validação realizada: análise sintática Roslyn dos nove arquivos alterados no
 - Comparar um bake de teste com Smallest Occluder menor somente após inspecionar paredes e escala. Verificar custo de bake/memória e resultado nos dois pontos; não editar apenas o número serializado e esperar que o PVS já gravado mude.
 
 Referências oficiais: [janela de Occlusion Culling, Unity 2021.3](https://docs.unity.cn/2021.3/Documentation/Manual/occlusion-culling-window.html), [fluxo de profiling](https://unity.com/how-to/best-practices-for-profiling-game-performance) e [alocações e ferramentas de memória](https://unity.com/how-to/use-memory-profiling-unity).
+
+## Investigação de custo por Kobold — 2026-11-10
+
+### Evidência das três capturas fornecidas
+
+Valores aproximados de frames individuais; não são médias nem medições produzidas nesta investigação:
+
+| Cenário | CPU do frame | Draw Calls (painel inferior) | Batches | Triângulos (painel inferior) |
+| --- | ---: | ---: | ---: | ---: |
+| Lobby vazio | 2,61 ms | 486 | 327 | 480,1 mil |
+| Kobolds fora de visão | 7,14 ms | 481 | 331 | 527,7 mil |
+| Kobolds visíveis | 6,90 ms | 859 | 706 | 1,3 milhão |
+
+A captura fora de visão acrescenta aproximadamente 4,53 ms de CPU ao frame vazio, apesar de Draw Calls semelhantes. O bloco `PreLateUpdate.ScriptRunBehaviourLateUpdate` ocupa aproximadamente 2,85 ms fora de visão e 1,73 ms com os personagens visíveis. `Penetrator.LateUpdate` aparece explicitamente na primeira captura, com aproximadamente 0,87 ms em uma das amostras legíveis. Não atribuir o custo de todo o bloco a essa amostra: há outros callbacks e potencialmente outras instâncias.
+
+Esses frames justificam priorizar scripts na thread principal. Não demonstram ganho de FPS, custo médio por personagem, escala assintótica ou que olhar para os Kobolds melhora a performance: fases da física e estados da simulação variam entre frames. A duração de GPU aparece indisponível. Culling e renderização não são o foco desta etapa.
+
+### Caminhos síncronos encontrados, por prioridade de medição
+
+1. **Curvas e busca automática de interação.** [Penetrator.LateUpdate](Packages/com.naelstrof.penetrationtech/Scripts/Penetrator.cs) executa na thread principal sem condição de visibilidade. Reconstrói a curva ociosa e a curva final em duas chamadas a `SetWeightsFromPoints` por execução, inclusive sem interação. Cada chamada em [CatmullSpline](Packages/com.naelstrof.penetrationtech/Scripts/CatmullSpline.cs) gera pesos, uma tabela de distância com 32 amostras e uma tabela de binormais com 16 amostras. Quando `AutoSeek` está ativo, não há intervalo de busca: satisfeitas as condições de estado/transição, executa `OverlapSphereNonAlloc` e avalia os candidatos a cada frame. `NonAlloc` evita o array de resultados, mas não elimina o custo da consulta física nem da avaliação.
+2. **Reconstrução repetida em consultas.** [Penetrable.GetPath](Packages/com.naelstrof.penetrationtech/Scripts/Penetrable.cs) lê os transforms e reconstrói a curva a cada consulta; não possui cache por pose ou por frame. A avaliação de candidatos da busca chama esse método para obter a tangente. Construção de caminhos, listeners e notificações também podem consultá-lo. Aumentar a densidade de personagens pode aumentar tanto o número de buscadores quanto o de candidatos, mas isso precisa ser confirmado por `Calls` nas capturas. Não presumir custo quadrático para qualquer disposição de personagens.
+3. **Envio visual contínuo fora de visão.** [CatmullDeformer.LateUpdate](Packages/com.naelstrof.penetrationtech/Scripts/CatmullDeformer.cs) empacota dados, chama `ComputeBuffer.SetData` e atualiza `MaterialPropertyBlock` todo frame. [ProceduralDeformation.LateUpdate](Packages/com.naelstrof.penetrationtech/Scripts/ProceduralDeformation.cs) envia dois buffers e reaplica seus vínculos aos renderers sem teste de visibilidade ou de alteração. Chamadas de upload são candidatas a custo de CPU/driver; o código e as imagens, sozinhos, não demonstram uma espera CPU/GPU. A chamada `BakeMesh` encontrada nesse arquivo pertence ao botão de bake do Editor, não ao loop de runtime.
+4. **Rigidbodies do ragdoll.** [Ragdoller.LateUpdate e RigidbodyNetworkInfo.UpdateState](Assets/KoboldKare/Scripts/Ragdoller.cs) percorrem os corpos a cada frame, inclusive para personagens locais em pé. Reaplicam `isKinematic` e `interpolation` mesmo quando o estado não mudou. No caminho remoto de ragdoll também interpolam transforms. Esse custo multiplica por personagens e ossos; a captura também mostra aumento do bloco de interpolação física. Ainda falta estabelecer quanto cada um representa.
+5. **Inflador atualizado sem mudança de valor.** [Kobold.Update](Assets/KoboldKare/Scripts/Kobold.cs) chama `bonerInflater.SetSize` por apêndice ativo a cada frame. [Inflatable.SetSize e TweenToNewSize](Packages/com.naelstrof.inflatable/Inflatable.cs) não descartam alvos iguais; quando a corrotina anterior termina, uma nova pode começar mesmo com excitação zero. Durante a corrotina, [BonerInflatable.OnSizeChanged](Assets/KoboldKare/Scripts/BonerInflatable.cs) reaplica blendshapes e o blend de jiggle. É trabalho redundante possível, ainda sem atribuição de milissegundos. Corrotinas continuam na thread principal: `yield` distribui execução no tempo e não cria uma thread de trabalho.
+6. **Jiggle, animação e controlador.** [JiggleRigBuilder.Advance](Packages/com.naelstrof.jigglephysics/Scripts/JiggleRigBuilder.cs) e [JiggleSkin.Advance](Packages/com.naelstrof.jigglephysics/Scripts/JiggleSkin.cs) simulam e aplicam poses sequencialmente. Existe [JiggleRigRendererLOD](Packages/com.naelstrof.jigglephysics/Scripts/JiggleRigRendererLOD.cs), portanto não assumir que todos os rigs continuem ativos fora de visão: confirmar na captura. [CharacterControllerAnimator.Update](Assets/KoboldKare/Scripts/CharacterControllerAnimator.cs) continua atualizando parâmetros/VFX/look-at sem teste de visibilidade. [KoboldCharacterController.FixedUpdate](Assets/KoboldKare/Scripts/KoboldCharacterController.cs) calcula chão com até nove raycasts; `OverlapCapsule` que aloca aparece em `Stuck`, condicionado à tentativa de levantar de um agachamento, e não em todo frame ocioso. Física e avaliação nativa do Animator devem ser medidas separadamente dos callbacks C#.
+
+A [IA de olhar](Assets/KoboldKare/Scripts/KoboldAIPossession.cs) possui pensamento com espera de dois segundos, além de um `LateUpdate` de orientação. Não apareceu evidência estática suficiente para colocá-la acima das curvas neste cenário. O metabolismo já possui instrumentação e agendamento documentados acima; medir seus picos separadamente do custo contínuo.
+
+### Instrumentação adicionada nesta etapa
+
+Somente campos estáticos `ProfilerMarker`, import da API e escopos `.Auto()`; nenhuma alteração de estado, frequência, autoridade Photon ou visibilidade. Os escopos fecham também em retornos antecipados/exceções. Nenhum escopo atravessa um `yield`.
+
+| Marcador | O que mede |
+| --- | --- |
+| `Penetration.Penetrator.LateUpdate` | Callback completo, incluindo descendentes |
+| `Penetration.Penetrator.AutoSeek` | Busca física e avaliação dos candidatos |
+| `Penetration.Spline.Rebuild` | Reconstrução por `SetWeightsFromPoints` |
+| `Penetration.Spline.DistanceLUT` | Geração da tabela de distância |
+| `Penetration.Spline.BinormalLUT` | Geração da tabela de binormais |
+| `Penetration.Penetrable.GetPath` | Consulta que refaz a curva do alvo |
+| `Penetration.Deformer.Upload` | Empacotamento, upload e property blocks do deformador |
+| `Penetration.ProceduralDeformation.Upload` | Dois uploads e property blocks da deformação receptora |
+| `Kobold.Ragdoller.LateUpdate` | Atualização dos corpos e interpolação remota |
+| `Jiggle.Rig.Advance` | Avanço de um builder de rigs |
+| `Jiggle.Skin.Advance` | Avanço de um JiggleSkin, incluindo envio visual |
+| `Kobold.Throb.Update` | Cálculo e chamada do inflador por frame |
+| `Kobold.BonerInflatable.OnSizeChanged` | Aplicação de blendshapes/jiggle; também aparece sob execução de corrotinas |
+
+Nomes constantes permitem agrupar instâncias sem alocar strings por frame. `Calls` de um marcador pode contar apêndices, curvas ou builders, não necessariamente Kobolds. `Time ms` inclusivo inclui os filhos: não somar um pai aos seus descendentes. Usar `Self ms` para separar trabalho próprio. Os marcadores de upload incluem empacotamento/property blocks, não apenas transferência de buffer.
+
+### Captura necessária para confirmar o maior custo
+
+1. Recompilar uma Development Build com conexão do Profiler; desligar Deep Profile. Manter a mesma configuração de VSync/limite de FPS, resolução e qualidade em todas as amostras. Aguardar carregamento/inicialização e estabilização das simulações.
+2. Usar o mesmo save e três quantidades conhecidas de Kobolds, por exemplo N, 2N e 4N, além do cenário vazio. Registrar o número real de personagens e apêndices ativos; não inferi-lo pelos nomes das imagens. Fixar posição/pose, autoridade local/remota e estado em pé/ragdoll. Capturar 300–600 frames por condição, olhando para eles e depois mantendo-os fora de visão.
+3. Em CPU Usage, usar Hierarchy para ordenar por `Time ms` e comparar `Self ms`, `Calls` e `GC Alloc` dos marcadores. Usar Timeline para verificar em qual thread o trabalho ocorre. Comparar média/mediana e p95/p99 do frame; manter picos de metabolismo destacados. Só ativar allocation call stacks em uma captura separada se houver alocações relevantes.
+4. Para as curvas, comparar `Spline.Rebuild` e `Penetrable.GetPath` por frame, e os filhos de `AutoSeek`. Se os custos de LUT dominarem, priorizar cache/invalidação e reconstruções redundantes. Cache apenas por frame não basta se transforms mudarem dentro do mesmo frame: preservar ordem e correção das consultas.
+5. Se uploads dominarem, testar separadamente atualização por alteração de dados e redução de trabalho visual invisível, preservando o caminho de simulação e a atualização ao voltar a aparecer. Se ragdoll dominar, testar aplicação de configuração apenas em transições. Se o inflador repetir chamadas com zero, testar descarte de alvos iguais preservando o contrato de eventos/listeners.
+6. Qualquer teste A/B que desative um componente de interação deve usar uma sessão descartável e recuperar o mesmo estado inicial: desativá-lo pode disparar `OnDisable`, remover colliders/listeners e mudar a própria simulação. Não usar essa comparação como único argumento de causalidade. Não mover chamadas de UnityEngine para `Task.Run`; paralelização exige separar dados e respeitar as APIs que precisam da thread principal.
+
+### Validação desta etapa e limites
+
+- Os dez arquivos instrumentados passaram pelo parser Roslyn em C# 9 nos modos Editor e Player (20 verificações).
+- Removendo apenas os imports/campos/escopos adicionados, os tokens C# coincidem com os fontes anteriores nos dois modos, confirmando o escopo de instrumentação.
+- Um trecho com `ProfilerMarker` e `using var scope = marker.Auto()` compilou em memória contra `UnityEngine.CoreModule.dll` do Unity 2021.3.45f2.
+- Verificação de whitespace passou considerando CRLF.
+- Não foi executada compilação completa do jogo, Play Mode, nova captura nem medição de ganho. A investigação confirma caminhos contínuos síncronos; o maior consumidor agregado ainda depende da captura instrumentada.

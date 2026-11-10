@@ -1,3 +1,4 @@
+using Unity.Profiling;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class BonerInflatable : InflatableListener {
+    private static readonly ProfilerMarker sizeChangedMarker = new ProfilerMarker("Kobold.BonerInflatable.OnSizeChanged");
     [SerializeField]
     private string limpBlendshape;
     [SerializeField]
@@ -48,6 +50,7 @@ public class BonerInflatable : InflatableListener {
     }
 
     public override void OnSizeChanged(float newSize) {
+        using var profilingScope = sizeChangedMarker.Auto();
         float size = Mathf.Clamp01(newSize);
         float limpTriggerAmount = Easing.Cubic.InOut(1f-Mathf.Abs((size - 0.5f) * 2f));
         float flaccidTriggerAmount = Easing.Cubic.In(1f - size);

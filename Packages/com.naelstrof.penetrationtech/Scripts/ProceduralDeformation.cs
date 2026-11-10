@@ -1,3 +1,4 @@
+using Unity.Profiling;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -101,6 +102,7 @@ namespace PenetrationTech {
 #endif
     [ExecuteAlways]
     public class ProceduralDeformation : MonoBehaviour {
+        private static readonly ProfilerMarker uploadMarker = new ProfilerMarker("Penetration.ProceduralDeformation.Upload");
         [SerializeField]
         private List<Penetrable> penetrableTargets;
         [SerializeField]
@@ -236,6 +238,7 @@ namespace PenetrationTech {
         }
 
         void LateUpdate() {
+            using var profilingScope = uploadMarker.Auto();
             // Make sure data we're not using is zero'd so the shader doesn't freak out.
             for (int i=penetrableTargets.Count;i<4;i++) {
                 data[i] = new PenetratorData(0);

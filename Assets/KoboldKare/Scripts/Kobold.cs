@@ -14,6 +14,7 @@ using Unity.Profiling;
 using Random = UnityEngine.Random;
 
 public class Kobold : GeneHolder, IGrabbable, IPunObservable, IPunInstantiateMagicCallback, ISavable, IValuedGood {
+    private static readonly ProfilerMarker throbMarker = new ProfilerMarker("Kobold.Throb.Update");
     private static readonly ProfilerMarker metabolismMarker = new ProfilerMarker("Kobold.MetabolismTick");
     private static readonly ProfilerMarker consumptionMarker = new ProfilerMarker("Kobold.ProcessReagents");
     private static readonly ProfilerMarker returnMixMarker = new ProfilerMarker("Kobold.ReturnReagents");
@@ -531,6 +532,7 @@ public class Kobold : GeneHolder, IGrabbable, IPunObservable, IPunInstantiateMag
         }
     }
     private void Update() {
+        using var profilingScope = throbMarker.Auto();
         // Throbbing!
         foreach(var dick in activeDicks) {
             dick.bonerInflater.SetSize(arousal*0.95f + (0.05f * Mathf.Clamp01(Mathf.Sin(Time.time*2f)))*arousal, dick.descriptor);

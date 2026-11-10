@@ -1,3 +1,4 @@
+using Unity.Profiling;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,7 @@ using UnityEngine.Serialization;
 namespace JigglePhysics {
     
 public class JiggleRigBuilder : MonoBehaviour, IJiggleAdvancable, IJiggleBlendable {
+    private static readonly ProfilerMarker advanceMarker = new ProfilerMarker("Jiggle.Rig.Advance");
     public const float VERLET_TIME_STEP = 0.02f;
     public const float MAX_CATCHUP_TIME = VERLET_TIME_STEP*4f;
     internal const float SETTLE_TIME = 0.2f;
@@ -437,6 +439,7 @@ public class JiggleRigBuilder : MonoBehaviour, IJiggleAdvancable, IJiggleBlendab
     }
 
     public virtual void Advance(float deltaTime, Vector3 gravity, double timeAsDouble, double timeAsDoubleOneStepBack, SphereCollider sphereCollider) {
+        using var profilingScope = advanceMarker.Auto();
         #region Settling on spawn, to prevent instant posing jiggles.
 
         if (settleTimer < SETTLE_TIME) {

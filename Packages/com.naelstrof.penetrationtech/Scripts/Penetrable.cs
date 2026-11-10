@@ -1,3 +1,4 @@
+using Unity.Profiling;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -60,6 +61,7 @@ namespace PenetrationTech {
     #endif
     [ExecuteAlways]
     public class Penetrable : CatmullDisplay {
+        private static readonly ProfilerMarker getPathMarker = new ProfilerMarker("Penetration.Penetrable.GetPath");
         private CatmullSpline path;
         public delegate void SetClipDistanceAction(float startDistWorld, float endDistWorld);
         public delegate void PenetrateNotifyAction(Penetrable penetrable, Penetrator penetrator, float worldSpaceDistanceToPenetrator, SetClipDistanceAction clipAction);
@@ -270,6 +272,7 @@ namespace PenetrationTech {
             penetrationNotify?.Invoke(this, penetrator, worldSpaceDistanceToPenisRoot, clipAction);
         }
         public override CatmullSpline GetPath() {
+            using var profilingScope = getPathMarker.Auto();
             if (!Application.isPlaying) {
                 CheckValid();
             }

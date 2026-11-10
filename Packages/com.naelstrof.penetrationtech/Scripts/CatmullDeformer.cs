@@ -1,3 +1,4 @@
+using Unity.Profiling;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEditor;
@@ -6,6 +7,7 @@ using UnityEngine;
 namespace PenetrationTech {
 
     public abstract class CatmullDeformer : CatmullDisplay {
+        private static readonly ProfilerMarker uploadMarker = new ProfilerMarker("Penetration.Deformer.Upload");
         [SerializeField][Tooltip("The main axis of deformation, this should point length-wise through the object.")]
         protected Vector3 localRootForward = Vector3.up;
         [SerializeField]
@@ -108,6 +110,7 @@ namespace PenetrationTech {
             propertyBlock = null;
         }
         protected virtual void LateUpdate() {
+            using var profilingScope = uploadMarker.Auto();
             data[0] = new CatmullSplineData(GetPath());
             catmullBuffer.SetData(data, 0, 0, 1);
             foreach(RendererSubMeshMask rsm in targetRenderers) {

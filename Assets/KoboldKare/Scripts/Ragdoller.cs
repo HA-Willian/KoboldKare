@@ -1,3 +1,4 @@
+using Unity.Profiling;
 using System;
 using System.Collections.Generic;
 using JigglePhysics;
@@ -9,6 +10,7 @@ using SimpleJSON;
 using UnityEngine;
 
 public class Ragdoller : MonoBehaviourPun, IPunObservable, ISavable, IOnPhotonViewOwnerChange {
+    private static readonly ProfilerMarker lateUpdateMarker = new ProfilerMarker("Kobold.Ragdoller.LateUpdate");
     public delegate void RagdollEventHandler(bool ragdolled);
     public event RagdollEventHandler RagdollEvent;
     private Animator animator;
@@ -209,6 +211,7 @@ public class Ragdoller : MonoBehaviourPun, IPunObservable, ISavable, IOnPhotonVi
     }
 
     void LateUpdate() {
+        using var profilingScope = lateUpdateMarker.Auto();
         foreach(var networkInfo in rigidbodyNetworkInfos) {
             networkInfo.UpdateState(photonView.IsMine, ragdolled);
         }

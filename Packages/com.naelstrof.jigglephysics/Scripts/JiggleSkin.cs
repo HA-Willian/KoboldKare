@@ -1,3 +1,4 @@
+using Unity.Profiling;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 namespace JigglePhysics {
 
 public class JiggleSkin : MonoBehaviour, IJiggleAdvancable, IJiggleBlendable {
+    private static readonly ProfilerMarker advanceMarker = new ProfilerMarker("Jiggle.Skin.Advance");
     [Serializable]
     public class JiggleZone : JiggleRigBuilder.JiggleRig {
         [Tooltip("How large of a radius the zone should effect, in target-space meters. (Scaling the target will effect the radius.)")]
@@ -180,6 +182,7 @@ public class JiggleSkin : MonoBehaviour, IJiggleAdvancable, IJiggleBlendable {
     }
 
     public void Advance(float deltaTime, Vector3 gravity, double timeAsDouble, double timeAsDoubleOneStepBack, SphereCollider sphereCollider) {
+        using var profilingScope = advanceMarker.Auto();
         if (settleTimer < JiggleRigBuilder.SETTLE_TIME) {
             settleTimer += deltaTime;
             if (settleTimer >= JiggleRigBuilder.SETTLE_TIME) {

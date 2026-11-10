@@ -163,3 +163,44 @@ Nomes constantes permitem agrupar instâncias sem alocar strings por frame. `Cal
 - Um trecho com `ProfilerMarker` e `using var scope = marker.Auto()` compilou em memória contra `UnityEngine.CoreModule.dll` do Unity 2021.3.45f2.
 - Verificação de whitespace passou considerando CRLF.
 - Não foi executada compilação completa do jogo, Play Mode, nova captura nem medição de ganho. A investigação confirma caminhos contínuos síncronos; o maior consumidor agregado ainda depende da captura instrumentada.
+
+### Preparação da medição na build fornecida
+
+- Diretório informado: `E:/Git/GAME-KoboldKare-DevBuild-Opt`. Executável e assemblies presentes, com arquivos da build datados de 2026-11-10 às 17:30 (hora local).
+- Verificada a presença dos nomes dos marcadores de curvas, busca, uploads, jiggle, ragdoll, infladores e metabolismo nos assemblies da build. Essa inspeção confirma a instrumentação incluída, mas não substitui confirmar as amostras durante a execução.
+- A subpasta `Profiler` estava vazia na inspeção; o Editor Unity 2021.3.45f2 estava aberto e o processo do jogo não estava em execução.
+- A ferramenta de controle de desktop exigida pelo skill de Computer Use não está disponível nesta sessão. A coleta inicial depende de intervenção do usuário: salvar capturas nativas do Profiler, com Deep Profile desligado, para lobby com somente o jogador e para a mesma população adicional visível/fora de visão. Registrar a quantidade real de personagens e usar aproximadamente 300–600 frames estáveis por condição.
+- Nenhuma nova captura ou conclusão quantitativa foi produzida nessa preparação. Após receber os arquivos, comparar os marcadores antes de alterar o comportamento da simulação.
+
+### Resultado das capturas nativas de 0, 10, 20 e 40 Kobolds
+
+Coleta fornecida pelo usuário em 2026-11-10: quatro arquivos `.data` e quatro imagens na subpasta `Profiler` da build. Todos os Kobolds estavam visíveis e o limite do jogo foi fixado em 60 FPS. A descrição de `0k` corresponde ao cenário sem Kobolds adicionais; o callback `Kobold.Throb.Update` registra 1, 11, 21 e 41 execuções por frame nos quatro cenários. Nenhuma comparação fora de visão foi feita nesta coleta.
+
+Extração offline concluída no próprio Unity 2021.3.45f2 em projeto temporário, sem abrir o projeto do jogo nessa instância. O [leitor e procedimento reproduzível](Tools/ProfilerAnalysis/README.md) usam `RawFrameDataView` e validam tempos totais, próprios e contagens dos marcadores instrumentados contra a Hierarchy nativa no primeiro frame completo de cada captura. As quatro verificações passaram. Também foram verificadas médias dos CSVs por frame e a contabilidade de bytes de GC.
+
+Cada captura disponibilizou 300 frames ao leitor: 299 completos e um terminal incompleto com duração zero, que foi excluído. Picos não nulos foram mantidos. O limite de memória do leitor foi ampliado somente no processo de análise para recuperar todos os frames do cenário de 40; nenhuma preferência do Editor foi alterada.
+
+| Kobolds adicionais | Frame médio (ms) | Espera por limite (ms) | Scripts LateUpdate (ms) | Penetrator.LateUpdate (ms) | Spline.Rebuild (ms) | Reconstruções/frame |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0 | 16,69 | 12,77 | 0,20 | 0,00 | 0,12 | 8,00 |
+| 10 | 16,71 | 7,30 | 3,34 | 2,59 | 2,30 | 150,70 |
+| 20 | 16,71 | 3,29 | 5,80 | 4,60 | 3,97 | 268,06 |
+| 40 | 25,77 | 0,0021 | 13,20 | 10,78 | 9,10 | 625,24 |
+
+Os marcadores são inclusivos e suas colunas não devem ser somadas. O limitador esconde o aumento de custo até 20 personagens, preenchendo a folga com `WaitForTargetFPS`. Com 40, essa folga acabou. O p95 do frame é 27,57 ms e o p99, 28,39 ms. O inverso do frame médio é aproximadamente 38,8 FPS na janela capturada; os 43 FPS informados depois pelo usuário correspondem a outra janela de execução, não a essa média.
+
+**Maior consumidor entre os scripts medidos: curvas e busca do sistema de interação.** Com 40, `Penetrator.LateUpdate` ocupa aproximadamente 41,8% do frame médio. `GetPath` acumula 8,56 ms em 561,82 consultas por frame. Apenas as consultas a `GetPath` diretamente sob `AutoSeek` consomem 6,58 ms em 432,95 chamadas, aproximadamente 89,3% dos 7,37 ms desse bloco. Toda a amostragem `Physics.OverlapSphereNonAlloc` na thread principal soma aproximadamente 0,36 ms: a reconstrução na avaliação dos candidatos custa mais que a consulta espacial em si.
+
+As LUTs de binormais e distância somam aproximadamente 7,25 ms de tempo próprio dentro dos 9,10 ms de reconstrução. Não foram registradas alocações nesses marcadores de curva. Foram medidos 24 callbacks de penetradores por frame no cenário de 40: número de componentes ativos, composição, densidade e estado também variam; não concluir complexidade quadrática somente com essas quatro populações.
+
+Revisão das outras hipóteses no cenário de 40:
+
+- Uploads instrumentados: aproximadamente 0,21 ms somados na thread principal; prioridade reduzida. Tempo de GPU indisponível, portanto não inferir seu custo pelo tempo de upload.
+- Jiggle rig + skin: aproximadamente 1,84 ms; custo secundário.
+- Callback C# do ragdoll: aproximadamente 0,14 ms; distinguir do trabalho nativo de física que pode ser afetado pelos estados/transforms.
+- Interpolação física: aproximadamente 2,48 ms. Bloco de física fixa: aproximadamente 2,38 ms, com média de 1,29 passos físicos por frame, contra 0,83 no cenário vazio. A duração maior do frame aumenta passos por frame e pode ampliar a carga. Não somar pais/filhos de física.
+- Infladores e metabolismo: marcadores com médias pequenas em relação às curvas. Alocação gerenciada total de aproximadamente 2,16 KiB/frame; nenhum marcador `GC.Collect` nos frames analisados.
+
+**Primeira correção indicada:** reaproveitar a curva de `Penetrable.GetPath()` enquanto a sequência de posições reais dos pontos permanecer exatamente igual. A invalidação deve observar mudanças de pose, inclusive dentro do mesmo frame. Em mudança separada, avaliar uma consulta específica da tangente de entrada para a busca não gerar LUTs completas por candidato. Preservar interação, ordem de execução e autoridade; validar equivalência e repetir captura A/B antes de afirmar ganho de FPS.
+
+Relatório detalhado, comparação CSV, séries por frame, atribuição por pai e hashes dos arquivos originais foram salvos em `E:/Git/GAME-KoboldKare-DevBuild-Opt/Profiler/Analysis-20261110`. As capturas originais foram preservadas. Nenhum comportamento do jogo foi alterado nesta etapa; não é necessária nova intervenção do usuário para concluir o diagnóstico da coleta visível.

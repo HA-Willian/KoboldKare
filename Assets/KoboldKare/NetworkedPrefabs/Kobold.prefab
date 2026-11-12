@@ -1964,11 +1964,11 @@ MonoBehaviour:
     listeners:
     - rid: 5882124988304326676
   fatnessInflater:
-    bounce: {fileID: 11400000, guid: e18312d1b399ef44cbae03acd0a32afb, type: 2}
+    bounce: {fileID: 11400000, guid: 8bb8ec1eabdcb7043a4605858f604a8a, type: 2}
     listeners:
     - rid: 2
   sizeInflater:
-    bounce: {fileID: 11400000, guid: e18312d1b399ef44cbae03acd0a32afb, type: 2}
+    bounce: {fileID: 11400000, guid: 8bb8ec1eabdcb7043a4605858f604a8a, type: 2}
     listeners:
     - rid: 3
   boobsInflater:
@@ -1985,6 +1985,8 @@ MonoBehaviour:
     optionalDatabase: {fileID: 0}
   tummyGrumbles: {fileID: 11400000, guid: 67a1644657f256b47ab2a61a75c069d6, type: 2}
   garglePack: {fileID: 11400000, guid: 2098de8eac6d5e0419986616fa2a8f15, type: 2}
+  ballGrowthSound: {fileID: 11400000, guid: 4bb8b189df8295a42b3736a510558d68, type: 2}
+  StretchGrowthSound: {fileID: 11400000, guid: 450957ab78ca9634ab5e4e57c39e1f89, type: 2}
   activeDicks: []
   koboldBodyRenderers:
   - {fileID: 6506915555087688956}

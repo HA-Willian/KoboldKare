@@ -20,6 +20,8 @@ public class Kobold : GeneHolder, IGrabbable, IPunObservable, IPunInstantiateMag
     private static readonly ProfilerMarker genesMarker = new ProfilerMarker("Kobold.ApplyGenes");
     private readonly ReagentContents metabolismBuffer = new ReagentContents();
     private bool metabolismInProgress;
+    private const float cumPregnancyDelay = 60f;
+    private float cumPregnancyReadyTime = -1f;
     [System.Serializable]
     public class PenetrableSet {
         public Penetrable penetratable;
@@ -71,10 +73,14 @@ public class Kobold : GeneHolder, IGrabbable, IPunObservable, IPunInstantiateMag
     
     private float energy = 1f;
 
-    [SerializeField]
-    private AudioPack tummyGrumbles;
+    [SerializeField] private AudioPack tummyGrumbles;
+
     [FormerlySerializedAs("gurglePack")] [SerializeField]
     private AudioPack garglePack;
+
+    [SerializeField] private AudioPack ballGrowthSound;
+
+    [SerializeField] private AudioPack StretchGrowthSound;
     
     [HideInInspector]
     public List<DickDescriptor.DickSet> activeDicks = new List<DickDescriptor.DickSet>();
@@ -356,24 +362,69 @@ public class Kobold : GeneHolder, IGrabbable, IPunObservable, IPunInstantiateMag
             dickObject.GetComponentInChildren<DickDescriptor>().AttachTo(this);
         }
 
+        float temp = 0f;
+        float sizeDifference = 0f;
+        float growthVolume = 0f;
         foreach (var dickSet in activeDicks) {
             foreach (var inflater in dickSet.dickSizeInflater.GetInflatableListeners()) {
                 if (inflater is InflatableDick inflatableDick) {
                     inflatableDick.SetDickThickness(newGenes.dickThickness);
                 }
             }
-            dickSet.dickSizeInflater.SetSize(0.5f+Mathf.Log(1f + newGenes.dickSize / 20f, 2f), dickSet.descriptor);
-            dickSet.ballSizeInflater.SetSize(0.5f+Mathf.Log(1f + newGenes.ballSize / 20f, 2f), dickSet.descriptor);
+            temp = dickSet.ballSizeInflater.GetSize();
+            dickSet.ballSizeInflater.SetSize(0.2f+Mathf.Log(1f + Mathf.Pow(newGenes.ballSize, 2) / 10f, 10f) / 3f, dickSet.descriptor);
+            sizeDifference = Mathf.Abs(dickSet.ballSizeInflater.GetSize() - temp);
+            growthVolume = Mathf.Lerp(0.001f, 5f, sizeDifference) * 0.75f + 0.25f;
+            if (sizeDifference > 0f && ballGrowthSound != null) {
+                GameManager.instance.SpawnAudioClipInWorld(
+                    ballGrowthSound,
+                    dickSet.dick.transform.position,
+                    growthVolume
+                );
+            }
+            temp = dickSet.dickSizeInflater.GetSize();
+            dickSet.dickSizeInflater.SetSize(0.3f+Mathf.Log(1f + newGenes.dickSize / 160f, 2f), dickSet.descriptor);
+            sizeDifference = Mathf.Abs(dickSet.dickSizeInflater.GetSize() - temp);
+            growthVolume = Mathf.Lerp(0.001f, 5f, sizeDifference) * 0.75f + 0.25f;
+            if (sizeDifference > 0f && StretchGrowthSound != null) {
+                GameManager.instance.SpawnAudioClipInWorld(
+                    StretchGrowthSound,
+                    dickSet.dick.transform.position,
+                    growthVolume
+                );
+            }
+
         }
         grabber.SetMaxGrabCount(newGenes.grabCount);
+        temp = sizeInflater.GetSize();
         if (ragdoller.ragdolled) {
-            sizeInflater.SetSizeInstant(Mathf.Max(Mathf.Log(1f + newGenes.baseSize / 20f, 2f), 0.2f));
+            sizeInflater.SetSizeInstant(0.2f + 1.5f * Mathf.Log(1f + newGenes.baseSize / 10f, 10f));
         } else {
-            sizeInflater.SetSize(Mathf.Max(Mathf.Log(1f + newGenes.baseSize / 20f, 2f), 0.2f), this);
+            sizeInflater.SetSize(0.2f + 1.5f * Mathf.Log(1f + newGenes.baseSize / 10f, 10f), this);
+        }
+        if(Mathf.Abs(temp - sizeInflater.GetSize()) > 0.001f && StretchGrowthSound != null)
+        {
+            GameManager.instance.SpawnAudioClipInWorld(
+                StretchGrowthSound,
+                transform.position,
+                0.8f
+            );
         }
 
         fatnessInflater.SetSize(Mathf.Log(1f + newGenes.fatSize / 20f, 2f), this);
-        boobsInflater.SetSize(Mathf.Log(1f + newGenes.breastSize / 20f, 2f), this);
+
+        temp = boobsInflater.GetSize();
+        boobsInflater.SetSize(Mathf.Log(1f + Mathf.Pow(newGenes.breastSize, 2) / 80f, 20f), this);
+        sizeDifference = Mathf.Abs(boobsInflater.GetSize() - temp);
+        growthVolume = Mathf.Lerp(0.001f, 5f, sizeDifference) * 0.75f + 0.25f;
+        if (sizeDifference > 0f && StretchGrowthSound != null) {
+            GameManager.instance.SpawnAudioClipInWorld(
+                StretchGrowthSound,
+                transform.position,
+                growthVolume
+            );
+        }
+
         bellyContainer.maxVolume = newGenes.bellySize;
         metabolizedContents.SetMaxVolume(newGenes.metabolizeCapacitySize);
         Vector4 hbcs = new Vector4(newGenes.hue/255f, newGenes.brightness/255f, 0.5f, newGenes.saturation/255f);
@@ -581,8 +632,14 @@ public class Kobold : GeneHolder, IGrabbable, IPunObservable, IPunInstantiateMag
             }
             newEnergy = Mathf.MoveTowards(newEnergy, 1.1f, passiveEnergyGeneration);
         }
+        ReagentDatabase.TryGetAsset("Cum", out var cum);
         foreach (var pair in contents.Values) {
             if (ReagentDatabase.TryGetAsset(pair.id, out var reagent)) {
+                // Leave Cum unprocessed so it returns to the belly until the delay expires.
+                if (cum != null && reagent == cum &&
+                    (cumPregnancyReadyTime < 0f || Time.time < cumPregnancyReadyTime)) {
+                    continue;
+                }
                 float processedAmount = pair.volume;
                 reagent.GetConsumptionEvent().OnConsume(this, reagent, ref processedAmount, ref consumedReagents,
                     ref addbackReagents, ref genes, ref newEnergy);
@@ -620,6 +677,9 @@ public class Kobold : GeneHolder, IGrabbable, IPunObservable, IPunInstantiateMag
         if (!photonView.IsMine) {
             return;
         }
+        if (!metabolismInProgress) {
+            UpdateCumPregnancyTimer(bellyContainer.GetContents());
+        }
         using (metabolismMarker.Auto()) {
             stimulation = Mathf.MoveTowards(stimulation, 0f, f*0.08f);
             // A callback may re-enter metabolism. Never clear an output that the
@@ -643,8 +703,22 @@ public class Kobold : GeneHolder, IGrabbable, IPunObservable, IPunInstantiateMag
         gargleSource.Pause();
         gargleSource.enabled = false;
     }
+    private void UpdateCumPregnancyTimer(ReagentContents contents) {
+        if (ReagentDatabase.TryGetAsset("Cum", out var cum) && contents.GetVolumeOf(cum) > 0f) {
+            if (cumPregnancyReadyTime < 0f) {
+                cumPregnancyReadyTime = Time.time + cumPregnancyDelay;
+            }
+        } else {
+            cumPregnancyReadyTime = -1f;
+        }
+    }
+
     private void OnBellyContentsChanged(ReagentContents contents, GenericReagentContainer.InjectType injectType) {
-        bellyInflater.SetSize(Mathf.Log(1f + contents.volume / 80f, 2f), this);
+        // Metabolism temporarily removes reagents before returning the unprocessed mixture.
+        if (!metabolismInProgress) {
+            UpdateCumPregnancyTimer(contents);
+        }
+        bellyInflater.SetSize(Mathf.Log(1f + contents.volume / 80f, 20f), this);
         if (injectType != GenericReagentContainer.InjectType.Spray || bellyContainer.volume >= bellyContainer.maxVolume*0.99f) {
             return;
         }

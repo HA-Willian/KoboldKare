@@ -153,12 +153,13 @@ public class DickDescriptor : MonoBehaviour {
         cumming = true;
         float ballSize = attachedKobold.GetGenes().ballSize;
         // (1-1/(x/maxInput+1)) * maxPossibleResult
-        float pulsesSample = (1f - 1f / (ballSize / 100f + 1f)) * 60f + 5f;
+        float pulsesSample = (1f - 1f / (ballSize / 100f + 1f)) * 24f + 8f;
         int pulses = Mathf.CeilToInt(pulsesSample);
-        float pulseDuration = 0.8f;
+        float pulseDuration = 0.33f;
         for (int i = 0; i < pulses; i++) {
             GameManager.instance.SpawnAudioClipInWorld(set.cumSoundPack, set.dick.transform.position);
             float pulseStartTime = Time.time;
+            pulseDuration += 1f/(8f+(i+1)*2f);
             while (Time.time < pulseStartTime+pulseDuration) {
                 float t = ((Time.time - pulseStartTime) / pulseDuration);
                 foreach (var renderTarget in set.dick.GetTargetRenderers()) {
@@ -198,9 +199,9 @@ public class DickDescriptor : MonoBehaviour {
                 if (MozzarellaPool.instance.TryInstantiate(out Mozzarella mozzarella)) {
                     ReagentContents alloc = new ReagentContents();
                     if (ReagentDatabase.TryGetAsset("Cum", out var cum)) {
-                        alloc.AddMix(cum.GetReagent(attachedKobold.GetGenes().ballSize / pulses));
+                        alloc.AddMix( cum.GetReagent(ballSize / (pulses*7f)) );
                     }
-                    mozzarella.SetVolumeMultiplier(alloc.volume*2f);
+                    mozzarella.SetVolumeMultiplier(alloc.volume);
                     Color color = alloc.GetColor();
                     mozzarella.SetLineColor(color);
                     mozzarella.hitCallback += (hit, startPos, dir, length, volume) => {

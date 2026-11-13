@@ -180,7 +180,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    public AudioClip SpawnAudioClipInWorld(AudioPack pack, Vector3 position) {
+    public AudioClip SpawnAudioClipInWorld(AudioPack pack, Vector3 position, float volume = 1f) {
         GameObject g = new GameObject("One shot Audio");
         g.transform.position = position;
         AudioSource source = g.AddComponent<AudioSource>();
@@ -191,7 +191,7 @@ public class GameManager : MonoBehaviour {
         source.outputAudioMixerGroup = soundEffectGroup;
         source.spatialBlend = 1f;
         source.pitch = UnityEngine.Random.Range(0.85f,1.15f);
-        pack.Play(source);
+        pack.Play(source, volume);
         Destroy(g, source.clip.length);
         return source.clip;
     }

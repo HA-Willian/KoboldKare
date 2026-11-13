@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Renderer))]
 public class SpaceBeam : MonoBehaviour {
     private Camera targetCamera;
     [SerializeField,Range(0f,1f)]
@@ -17,6 +18,7 @@ public class SpaceBeam : MonoBehaviour {
         // I hope vilar never sees this.
         name = "SpaceBeamDontSave";
         propertyBlock = new MaterialPropertyBlock();
+        targetRenderer = GetComponent<Renderer>();
     }
 
     void Update() {

@@ -67,6 +67,49 @@ public static class KoboldGenesBitBufferExtension {
 
 [System.Serializable]
 public class KoboldGenes {
+    // A value snapshot also detects consumption handlers that mutate a gene object
+    // in place instead of returning a new instance through the ref parameter.
+    public readonly struct Snapshot {
+        private readonly bool hasGenes;
+        private readonly float maxEnergy, baseSize, fatSize, ballSize, dickSize, breastSize,
+            bellySize, metabolizeCapacitySize, dickThickness;
+        private readonly byte hue, clothingHue, brightness, saturation, grabCount, species;
+        private readonly short dickEquip;
+
+        public Snapshot(KoboldGenes genes) {
+            hasGenes = genes != null;
+            maxEnergy = genes?.maxEnergy ?? 0f;
+            baseSize = genes?.baseSize ?? 0f;
+            fatSize = genes?.fatSize ?? 0f;
+            ballSize = genes?.ballSize ?? 0f;
+            dickSize = genes?.dickSize ?? 0f;
+            breastSize = genes?.breastSize ?? 0f;
+            bellySize = genes?.bellySize ?? 0f;
+            metabolizeCapacitySize = genes?.metabolizeCapacitySize ?? 0f;
+            dickThickness = genes?.dickThickness ?? 0f;
+            hue = genes?.hue ?? 0;
+            clothingHue = genes?.clothingHue ?? 0;
+            brightness = genes?.brightness ?? 0;
+            saturation = genes?.saturation ?? 0;
+            grabCount = genes?.grabCount ?? 0;
+            species = genes?.species ?? 0;
+            dickEquip = genes?.dickEquip ?? 0;
+        }
+
+        public bool Matches(KoboldGenes genes) {
+            if (genes == null) {
+                return !hasGenes;
+            }
+            return hasGenes && maxEnergy == genes.maxEnergy && baseSize == genes.baseSize &&
+                fatSize == genes.fatSize && ballSize == genes.ballSize && dickSize == genes.dickSize &&
+                breastSize == genes.breastSize && bellySize == genes.bellySize &&
+                metabolizeCapacitySize == genes.metabolizeCapacitySize && dickThickness == genes.dickThickness &&
+                hue == genes.hue && clothingHue == genes.clothingHue && brightness == genes.brightness &&
+                saturation == genes.saturation && grabCount == genes.grabCount && species == genes.species &&
+                dickEquip == genes.dickEquip;
+        }
+    }
+
     public float maxEnergy = 5f;
     public float baseSize = 20f;
     public float fatSize;

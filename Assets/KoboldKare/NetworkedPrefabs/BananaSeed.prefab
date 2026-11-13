@@ -71,10 +71,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worth: 5
   displaySprite: {fileID: 21300000, guid: c4d52768fead19a4ab13f15b42b9d589, type: 3}
-  plantPrefab:
-    gameObject: {fileID: 6224846685087297140, guid: dd679e613b97496439b1e547faff665f,
-      type: 3}
-    photonName: Plant
   _spacing: 2.5
   plant: {fileID: 11400000, guid: 445b098e8df3d3a4eb935ec40f76d58a, type: 2}
 --- !u!114 &1793124260918799415
@@ -260,15 +256,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingMaxVolume: 3.4028235e+38
   type: 0
-  OnChange:
-    m_PersistentCalls:
-      m_Calls: []
-  OnFilled:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEmpty:
-    m_PersistentCalls:
-      m_Calls: []
   startingReagents: []
 --- !u!114 &6010824123396375017
 MonoBehaviour:

@@ -155,14 +155,13 @@ public class DickDescriptor : MonoBehaviour {
         cumming = true;
         float ballSize = attachedKobold.GetGenes().ballSize;
         // (1-1/(x/maxInput+1)) * maxPossibleResult
-        float pulsesSample = (1f - 1f / (ballSize / 100f + 1f)) * 30f + 6f;
+        float pulsesSample = (1f - 1f / (ballSize / 100f + 1f)) * 24f + 8f;
         int pulses = Mathf.CeilToInt(pulsesSample);
-        float pulseDuration = 0.25f;
+        float pulseDuration = 0.33f;
         for (int i = 0; i < pulses; i++) {
             GameManager.instance.SpawnAudioClipInWorld(set.cumSoundPack, set.dick.transform.position);
             float pulseStartTime = Time.time;
-            pulseDuration += (1f / ((i + 1) * 4));
-            //Debug.Log(pulseStartTime +" + "+ pulseDuration);
+            pulseDuration += 1f/(8f+(i+1)*2f);
             while (Time.time < pulseStartTime+pulseDuration) {
                 float t = ((Time.time - pulseStartTime) / pulseDuration);
                 
@@ -203,9 +202,9 @@ public class DickDescriptor : MonoBehaviour {
                 if (MozzarellaPool.instance.TryInstantiate(out Mozzarella mozzarella)) {
                     ReagentContents alloc = new ReagentContents();
                     if (ReagentDatabase.TryGetAsset("Cum", out var cum)) {
-                        alloc.AddMix(cum.GetReagent( (ballSize * 3f/2f) / (pulses + ballSize / 2) ));
+                        alloc.AddMix( cum.GetReagent(ballSize / (pulses*7f)) );
                     }
-                    mozzarella.SetVolumeMultiplier(alloc.volume*1.1f);
+                    mozzarella.SetVolumeMultiplier(alloc.volume);
                     Color color = alloc.GetColor();
                     mozzarella.SetLineColor(color);
                     mozzarella.hitCallback += (hit, startPos, dir, length, volume) => {
@@ -223,6 +222,7 @@ public class DickDescriptor : MonoBehaviour {
                             }
                         }
 
+#if KOBOLDKARE_RUNTIME_PAINTING
                         //Debug.DrawLine(hit.point, hit.point + hit.normal, Color.red, 5f);
                         if (alloc.volume > 0f) {
                             set.cumSplatProjectorMaterial.color = color;
@@ -230,17 +230,20 @@ public class DickDescriptor : MonoBehaviour {
                         PaintDecal.RenderDecalForCollider(hit.collider, set.cumSplatProjectorMaterial,
                             hit.point - hit.normal * 0.1f, Quaternion.LookRotation(hit.normal, Vector3.up)*Quaternion.AngleAxis(UnityEngine.Random.Range(-180f,180f), Vector3.forward),
                             Vector2.one * (volume * 4f), length);
+#endif
                     };
                     mozzarella.SetFollowPenetrator(set.dick);
                     //Debug.Log( ballSize +" "+( ballSize*3f/2f) / (pulses + ballSize/2) );
                 }
                 continue;
             }
+#if KOBOLDKARE_RUNTIME_PAINTING
             Vector3 holePos = pennedHole.GetPath().GetPositionFromT(0f);
             Vector3 holeTangent = pennedHole.GetPath().GetVelocityFromT(0f);
             PaintDecal.RenderDecalInSphere(holePos, set.dick.transform.lossyScale.x * 0.25f,
                 set.cumSplatProjectorMaterial, Quaternion.LookRotation(holeTangent, Vector3.up),
                 GameManager.instance.decalHitMask);
+#endif
             GenericReagentContainer container = pennedHole.GetComponentInParent<GenericReagentContainer>();
             if (attachedKobold.photonView.IsMine) {
                 ReagentContents alloc = new ReagentContents();

@@ -168,6 +168,7 @@ public class GenericReagentContainer : NoTouchGenericReagentContainer, IValuedGo
 
     public ReagentContents Peek() => new(GetContents());
     public ReagentContents Metabolize(float deltaTime) => GetContents().Metabolize(deltaTime);
+    internal void MetabolizeInto(float deltaTime, ReagentContents destination) => GetContents().MetabolizeInto(deltaTime, destination);
     public void OverrideReagent(Reagent r) => GetContents().OverrideReagent(r.id, r.volume);
     public void OverrideReagent(ScriptableReagent r, float volume) => GetContents().OverrideReagent((byte)ReagentDatabase.GetID(r), volume);
     public void OnReagentContentsChanged(InjectType injectType) {

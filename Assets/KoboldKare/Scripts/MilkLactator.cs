@@ -57,10 +57,12 @@ public class MilkLactator {
                                     buffer, kobold.photonView.ViewID, (byte)GenericReagentContainer.InjectType.Spray);
                             }
                         }
+#if KOBOLDKARE_RUNTIME_PAINTING
                         milkSplatMaterial.color = color;
                         PaintDecal.RenderDecalForCollider(hit.collider, milkSplatMaterial,
                             hit.point - hit.normal * 0.1f, Quaternion.LookRotation(hit.normal, Vector3.up)*Quaternion.AngleAxis(UnityEngine.Random.Range(-180f,180f), Vector3.forward),
                             Vector2.one * (volume * 4f), length);
+#endif
                     };
                 }
             }

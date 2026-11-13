@@ -74,7 +74,9 @@ public class GenericFluidVolume : MonoBehaviourPun {
             if (view == photonView) {
                 continue;
             }
+#if KOBOLDKARE_RUNTIME_PAINTING
             DipDecal(view);
+#endif
             if (!photonView.IsMine) {
                 continue;
             }
@@ -94,6 +96,7 @@ public class GenericFluidVolume : MonoBehaviourPun {
     }
 
     public void DipDecal(PhotonView view) {
+#if KOBOLDKARE_RUNTIME_PAINTING
         if (view.gameObject.layer == LayerMask.NameToLayer("World")) {
             return;
         }
@@ -130,6 +133,7 @@ public class GenericFluidVolume : MonoBehaviourPun {
                 }
             }
         }
+#endif
     }
 
     public void OnTriggerEnter(Collider other) {
